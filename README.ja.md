@@ -1,6 +1,6 @@
 # TypeScript vs WebAssembly 性能比較
 
-[[English](./README.en.md)], [[Japanese](./README.ja.md)], [[Zenn(Japanese)](https://zenn.dev/articles/39b82280a191d9)]
+[[English](./README.en.md)], [[Japanese](./README.ja.md)], [[Zenn(Japanese)](https://zenn.dev/moxak/articles/39b82280a191d9)]
 
 ## 1. 概要（Abstract）
 
