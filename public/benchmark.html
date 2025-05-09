@@ -206,13 +206,21 @@
         <div class="progress-bar" id="sort-progress">0%</div>
       </div>
 
-      <div class="chart-container">
-        <canvas id="sort-time-chart"></canvas>
+      <div class="tabs">
+        <div class="tab active" data-target="sort-time-tab">Execution Time</div>
+        <div class="tab" data-target="sort-memory-tab">Memory Usage</div>
       </div>
-      <div class="chart-container">
-        <canvas id="sort-memory-chart"></canvas>
+      <div class="tab-content active" id="sort-time-tab">
+        <div class="chart-container">
+          <canvas id="sort-time-chart"></canvas>
+        </div>
       </div>
-
+      <div class="tab-content" id="sort-memory-tab">
+        <div class="chart-container">
+          <canvas id="sort-memory-chart"></canvas>
+        </div>
+      </div>
+      
     </div>
 
     <div class="test-section" id="tree-section">
@@ -240,12 +248,21 @@
         <div class="progress-bar" id="tree-progress">0%</div>
       </div>
 
-      <div class="chart-container">
-        <canvas id="tree-time-chart"></canvas>
+      <div class="tabs">
+        <div class="tab active" data-target="tree-time-tab">Execution Time</div>
+        <div class="tab" data-target="tree-memory-tab">Memory Usage</div>
       </div>
-      <div class="chart-container">
-        <canvas id="tree-memory-chart"></canvas>
+      <div class="tab-content active" id="tree-time-tab">
+        <div class="chart-container">
+          <canvas id="tree-time-chart"></canvas>
+        </div>
       </div>
+      <div class="tab-content" id="tree-memory-tab">
+        <div class="chart-container">
+          <canvas id="tree-memory-chart"></canvas>
+        </div>
+      </div>
+
     </div>
 
     <div class="test-section" id="graph-section">
@@ -273,11 +290,19 @@
         <div class="progress-bar" id="graph-progress">0%</div>
       </div>
 
-      <div class="chart-container">
-        <canvas id="graph-time-chart"></canvas>
+      <div class="tabs">
+        <div class="tab active" data-target="graph-time-tab">Execution Time</div>
+        <div class="tab" data-target="graph-memory-tab">Memory Usage</div>
       </div>
-      <div class="chart-container">
-        <canvas id="graph-memory-chart"></canvas>
+      <div class="tab-content active" id="graph-time-tab">
+        <div class="chart-container">
+          <canvas id="graph-time-chart"></canvas>
+        </div>
+      </div>
+      <div class="tab-content" id="graph-memory-tab">
+        <div class="chart-container">
+          <canvas id="graph-memory-chart"></canvas>
+        </div>
       </div>
 
     </div>
