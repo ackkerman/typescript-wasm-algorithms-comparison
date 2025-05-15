@@ -13,74 +13,56 @@ interface BenchmarkResult {
 }
 
 export async function runTreeBenchmark(size: number): Promise<BenchmarkResult> {
-  // ランダムな数値配列を生成
-  const generateRandomNumbers = (n: number): number[] => {
-    const numbers = [];
+  const generateRandomNumbers = (n: number): Int32Array => {
+    const arr = new Int32Array(n);
     for (let i = 0; i < n; i++) {
-      numbers.push(Math.floor(Math.random() * 1000000));
+      arr[i] = Math.floor(Math.random() * 1_000_000);
     }
-    return numbers;
+    return arr;
   };
-  
+
   const numbers = generateRandomNumbers(size);
-  const searchNumbers = generateRandomNumbers(1000); // 検索用の数値
-  
-  // TypeScript実装のベンチマーク
+  const searchNumbers = generateRandomNumbers(1000);
+
+  // --- TypeScript ベンチマーク ---
   const tsBefore = performance.now();
   const tsMemoryBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
-  
+
   const tsTree = new AVLTree();
-  
-  // 挿入操作
-  for (const num of numbers) {
-    tsTree.insert(num);
-  }
-  
-  // 検索操作
-  for (const num of searchNumbers) {
-    tsTree.search(num);
-  }
-  
+  numbers.forEach(n => tsTree.insert(n));
+  searchNumbers.forEach(n => tsTree.search(n));
+
   const tsAfter = performance.now();
   const tsMemoryAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
-  
+
   const tsTime = tsAfter - tsBefore;
-  const tsMemory = (tsMemoryAfter - tsMemoryBefore) / (1024 * 1024); // MB単位
-  
-  // Wasm実装のベンチマーク
+  const tsMemory = (tsMemoryAfter - tsMemoryBefore) / (1024 * 1024); // MB
+
+  // --- Wasm ベンチマーク ---
   const wasmBefore = performance.now();
   const wasmMemoryBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
-  
+
   const wasmTree = await WasmAVLTree.create();
-  
-  // 挿入操作
-  for (const num of numbers) {
-    wasmTree.insert(num);
-  }
-  
-  // 検索操作
-  for (const num of searchNumbers) {
-    wasmTree.search(num);
-  }
-  
+  wasmTree.insertMany(numbers);
+  wasmTree.searchMany(searchNumbers);
+
   const wasmAfter = performance.now();
   const wasmMemoryAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
-  
+
   const wasmTime = wasmAfter - wasmBefore;
-  const wasmMemory = (wasmMemoryAfter - wasmMemoryBefore) / (1024 * 1024); // MB単位
-  
+  const wasmMemory = (wasmMemoryAfter - wasmMemoryBefore) / (1024 * 1024); // MB
+
   // メモリ解放
-  tsTree.cleanup();
   wasmTree.cleanup();
 
   return {
     typescript: {
       time: tsTime,
-      memory: tsMemory
+      memory: tsMemory,
     },
     wasm: {
       time: wasmTime,
-      memory: wasmMemory
-    }
+      memory: wasmMemory,
+    },
   };
 }

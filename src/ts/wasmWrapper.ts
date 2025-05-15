@@ -32,28 +32,29 @@ export async function wasmQuickSort(arr: number[]): Promise<number[]> {
 // AVL木のラッパークラス
 export class WasmAVLTree {
   private tree: RustAVLTree;
-  
-  private constructor() {
-    this.tree = new RustAVLTree();
-  }
-  
-  static async create(): Promise<WasmAVLTree> {
-    await initWasm();
-    return new WasmAVLTree();
-  }
-  
-  insert(value: number): void {
-    this.tree.insert(value);
-  }
-  
-  search(value: number): boolean {
-    return this.tree.search(value);
+
+  private constructor(tree: RustAVLTree) {
+    this.tree = tree;
   }
 
-    cleanup(): void {
-    if (typeof this.tree.free === 'function') {
-      this.tree.free(); // Rust側の free() を呼ぶ
-    }
+  static async create(): Promise<WasmAVLTree> {
+    await init(); // Wasmモジュール初期化
+    const tree = new RustAVLTree();
+    return new WasmAVLTree(tree);
+  }
+
+  insertMany(values: Int32Array): void {
+    this.tree.insert_many(values);
+  }
+
+  searchMany(values: Int32Array): boolean[] {
+    const result = this.tree.search_many(values);
+    return Array.from(result).map((v: number) => v === 1);
+  }
+
+  cleanup(): void {
+    this.tree.free();
+    // 型消去で明示的にnullに
     this.tree = null as any;
   }
 }

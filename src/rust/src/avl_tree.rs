@@ -20,40 +20,26 @@ impl AVLTree {
     pub fn new() -> Self {
         AVLTree { root: None }
     }
-    
-    pub fn insert(&mut self, value: i32) {
-        let root = self.root.take();
-        self.root = self.insert_node(root, value);
-    }
-    
-    pub fn search(&self, value: i32) -> bool {
-        self.search_node(&self.root, value)
-    }
-    
-    // その他のメソッド...
-    
-    fn height(node: &Option<Box<Node>>) -> i32 {
-        match node {
-            Some(n) => n.height,
-            None => 0,
+
+    #[wasm_bindgen]
+    pub fn insert_many(&mut self, values: &[i32]) {
+        for &v in values {
+            let root = self.root.take();
+            self.root = self.insert_node(root, v);
         }
-    }
-    
-    fn balance_factor(node: &Option<Box<Node>>) -> i32 {
-        match node {
-            Some(n) => Self::height(&n.left) - Self::height(&n.right),
-            None => 0,
-        }
-    }
-    
-    fn update_height(node: &mut Box<Node>) {
-        node.height = 1 + max(
-            Self::height(&node.left),
-            Self::height(&node.right)
-        );
     }
 
-    fn insert_node(&mut self, node: Option<Box<Node>>, value: i32) -> Option<Box<Node>> {
+    #[wasm_bindgen]
+    pub fn search_many(&self, values: &[i32]) -> Vec<u8> {
+        values.iter().map(|&v| self.search_node(&self.root, v) as u8).collect()
+    }
+
+    #[wasm_bindgen]
+    pub fn free(&mut self) {
+        self.root = None;
+    }
+
+    fn insert_node(&self, node: Option<Box<Node>>, value: i32) -> Option<Box<Node>> {
         match node {
             None => Some(Box::new(Node {
                 value,
@@ -67,81 +53,72 @@ impl AVLTree {
                 } else if value > n.value {
                     n.right = self.insert_node(n.right.take(), value);
                 } else {
-                    return Some(n);  // 重複値は無視
+                    return Some(n);
                 }
-    
                 Self::update_height(&mut n);
-    
-                let balance = Self::balance_factor(&Some(n.clone()));
-    
-                // 左の左ケース
-                if balance > 1 && value < n.left.as_ref().unwrap().value {
-                    return Some(Self::rotate_right(n));
-                }
-    
-                // 左の右ケース
-                if balance > 1 && value > n.left.as_ref().unwrap().value {
-                    n.left = Some(Self::rotate_left(n.left.take().unwrap()));
-                    return Some(Self::rotate_right(n));
-                }
-    
-                // 右の右ケース
-                if balance < -1 && value > n.right.as_ref().unwrap().value {
-                    return Some(Self::rotate_left(n));
-                }
-    
-                // 右の左ケース
-                if balance < -1 && value < n.right.as_ref().unwrap().value {
-                    n.right = Some(Self::rotate_right(n.right.take().unwrap()));
-                    return Some(Self::rotate_left(n));
-                }
-    
-                Some(n)
+                Some(Self::rebalance(n))
             }
         }
     }
-    
-    fn rotate_right(mut y: Box<Node>) -> Box<Node> {
-        let mut x = y.left.take().unwrap();
-        let t2 = x.right.take();
-    
-        x.right = Some(y);
-        if let Some(ref mut y_node) = x.right {
-            y_node.left = t2;
-            Self::update_height(y_node);
-        }
-        Self::update_height(&mut x);
-    
-        x
-    }
-    
-    fn rotate_left(mut x: Box<Node>) -> Box<Node> {
-        let mut y = x.right.take().unwrap();
-        let t2 = y.left.take();
-    
-        y.left = Some(x);
-        if let Some(ref mut x_node) = y.left {
-            x_node.right = t2;
-            Self::update_height(x_node);
-        }
-        Self::update_height(&mut y);
-    
-        y
-    }
-    
-    
+
     fn search_node(&self, node: &Option<Box<Node>>, value: i32) -> bool {
         match node {
             None => false,
-            Some(n) => {
-                if value == n.value {
-                    true
-                } else if value < n.value {
-                    self.search_node(&n.left, value)
-                } else {
-                    self.search_node(&n.right, value)
-                }
-            }
+            Some(n) => match value.cmp(&n.value) {
+                std::cmp::Ordering::Equal => true,
+                std::cmp::Ordering::Less => self.search_node(&n.left, value),
+                std::cmp::Ordering::Greater => self.search_node(&n.right, value),
+            },
         }
+    }
+
+    fn height(node: &Option<Box<Node>>) -> i32 {
+        node.as_ref().map_or(0, |n| n.height)
+    }
+
+    fn update_height(node: &mut Box<Node>) {
+        node.height = 1 + max(Self::height(&node.left), Self::height(&node.right));
+    }
+
+    fn balance_factor(node: &Box<Node>) -> i32 {
+        Self::height(&node.left) - Self::height(&node.right)
+    }
+
+    fn rebalance(mut node: Box<Node>) -> Box<Node> {
+        let balance = Self::balance_factor(&node);
+
+        if balance > 1 {
+            if Self::balance_factor(node.left.as_ref().unwrap()) < 0 {
+                node.left = Some(Self::rotate_left(node.left.take().unwrap()));
+            }
+            return Self::rotate_right(node);
+        }
+
+        if balance < -1 {
+            if Self::balance_factor(node.right.as_ref().unwrap()) > 0 {
+                node.right = Some(Self::rotate_right(node.right.take().unwrap()));
+            }
+            return Self::rotate_left(node);
+        }
+
+        node
+    }
+
+    fn rotate_left(mut x: Box<Node>) -> Box<Node> {
+        let mut y = x.right.take().unwrap();
+        x.right = y.left.take();
+        Self::update_height(&mut x);
+        y.left = Some(x);
+        Self::update_height(&mut y);
+        y
+    }
+
+    fn rotate_right(mut y: Box<Node>) -> Box<Node> {
+        let mut x = y.left.take().unwrap();
+        y.left = x.right.take();
+        Self::update_height(&mut y);
+        x.right = Some(y);
+        Self::update_height(&mut x);
+        x
     }
 }
