@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:rust": "cd src/rust && wasm-pack build --target web",
+    "build:rust": "cd src/rust && wasm-pack build --target web && wasm-opt -Oz pkg/rust_bg.wasm -o pkg/rust_bg.wasm",
     "build:ts": "webpack",
     "build": "npm run build:rust && npm run build:ts",
     "start": "npm run build:rust && webpack serve",
