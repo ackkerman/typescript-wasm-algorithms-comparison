@@ -13,70 +13,46 @@ interface BenchmarkResult {
 }
 
 export async function runGraphBenchmark(nodeCount: number): Promise<BenchmarkResult> {
-  // 指定されたノード数でランダムなグラフを生成
-  const generateRandomGraph = (nodes: number): { graph: Graph, edges: number } => {
-    const graph = new Graph(nodes);
-    let edgeCount = 0;
-    
-    // 各ノードから平均5つのエッジを追加
-    const edgesPerNode = 5;
-    for (let i = 0; i < nodes; i++) {
-      for (let j = 0; j < edgesPerNode; j++) {
-        const to = Math.floor(Math.random() * nodes);
-        const weight = Math.floor(Math.random() * 100) + 1;
-        
-        if (i !== to) {
-          graph.addEdge(i, to, weight);
-          edgeCount++;
-        }
-      }
-    }
-    
-    return { graph, edges: edgeCount };
-  };
-  
-  // TypeScript実装のベンチマーク
-  const tsBefore = performance.now();
-  const tsMemoryBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
-  
-  const { graph: tsGraph } = generateRandomGraph(nodeCount);
-  const tsResult = tsGraph.dijkstra(0); // ノード0からの最短経路
-  
-  const tsAfter = performance.now();
-  const tsMemoryAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
-  
-  const tsTime = tsAfter - tsBefore;
-  const tsMemory = (tsMemoryAfter - tsMemoryBefore) / (1024 * 1024); // MB単位
-  
-  // Wasm実装のベンチマーク
-  const wasmBefore = performance.now();
-  const wasmMemoryBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
-  
-  const wasmGraph = await WasmGraph.create(nodeCount);
-  
-  // 同じグラフを再現するための乱数シードをリセット
-  // 実際の実装では、同じエッジを追加するためのロジックが必要
-  for (let i = 0; i < nodeCount; i++) {
-    for (let j = 0; j < 5; j++) {
+  const EDGE_PER_NODE = 5;
+
+  // 共通のランダムグラフを構築（型: [from, to, weight, ...]）
+  const flatEdges: number[] = [];
+  const graphTS = new Graph(nodeCount);
+
+  for (let from = 0; from < nodeCount; from++) {
+    for (let j = 0; j < EDGE_PER_NODE; j++) {
       const to = Math.floor(Math.random() * nodeCount);
+      if (from === to) continue;
       const weight = Math.floor(Math.random() * 100) + 1;
-      
-      if (i !== to) {
-        wasmGraph.addEdge(i, to, weight);
-      }
+      flatEdges.push(from, to, weight);
+      graphTS.addEdge(from, to, weight);
     }
   }
-  
-  const wasmResult = wasmGraph.dijkstra(0);
-  
-  const wasmAfter = performance.now();
-  const wasmMemoryAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
-  
-  const wasmTime = wasmAfter - wasmBefore;
-  const wasmMemory = (wasmMemoryAfter - wasmMemoryBefore) / (1024 * 1024); // MB単位
-  
-  // メモリを解放
-  tsGraph?.cleanup?.();
+
+  // TypeScript 実装の測定
+  const tsMemBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const tsStart = performance.now();
+  graphTS.dijkstra(0);
+  const tsEnd = performance.now();
+  const tsMemAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
+
+  const tsTime = tsEnd - tsStart;
+  const tsMemory = (tsMemAfter - tsMemBefore) / (1024 * 1024); // MB
+
+  // Wasm 実装の測定
+  const wasmMemBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const wasmStart = performance.now();
+
+  const wasmGraph = await WasmGraph.create(nodeCount);
+  wasmGraph.addEdges(flatEdges);
+  wasmGraph.dijkstra(0);
+
+  const wasmEnd = performance.now();
+  const wasmMemAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
+
+  const wasmTime = wasmEnd - wasmStart;
+  const wasmMemory = (wasmMemAfter - wasmMemBefore) / (1024 * 1024); // MB
+
   wasmGraph.cleanup?.();
 
   return {

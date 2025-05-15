@@ -62,24 +62,35 @@ export class WasmAVLTree {
 // グラフのラッパークラス
 export class WasmGraph {
   private graph: RustGraph;
-  
-  private constructor(numVertices: number) {
-    this.graph = new RustGraph(numVertices);
+
+  private constructor(graph: RustGraph) {
+    this.graph = graph;
   }
-  
+
   static async create(numVertices: number): Promise<WasmGraph> {
     await initWasm();
-    return new WasmGraph(numVertices);
+    const graph = new RustGraph(numVertices);
+    return new WasmGraph(graph);
   }
-  
-  addEdge(from: number, to: number, weight: number): void {
-    this.graph.add_edge(from, to, weight);
+
+  /**
+   * 一括でエッジを追加する（[from, to, weight, from, to, weight, ...]）
+   */
+  addEdges(flatEdgeList: number[]): void {
+    const typedArray = new Int32Array(flatEdgeList);
+    this.graph.add_edges(typedArray);
   }
-  
+
+  /**
+   * Dijkstra 法を実行
+   */
   dijkstra(startVertex: number): number[] {
     return Array.from(this.graph.dijkstra(startVertex));
   }
 
+  /**
+   * メモリ解放
+   */
   cleanup(): void {
     if (typeof this.graph.free === 'function') {
       this.graph.free();
