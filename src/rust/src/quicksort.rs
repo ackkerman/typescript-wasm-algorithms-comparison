@@ -15,7 +15,7 @@ fn quick_sort_in_place(arr: &mut [i32]) {
         return;
     }
     let pivot_index = partition(arr);
-    quick_sort_in_place(&mut arr[0..pivot_index]);
+    quick_sort_in_place(&mut arr[..pivot_index]);
     quick_sort_in_place(&mut arr[pivot_index + 1..]);
 }
 
@@ -31,4 +31,11 @@ fn partition(arr: &mut [i32]) -> usize {
     }
     arr.swap(i, len - 1);
     i
+}
+
+#[wasm_bindgen]
+pub fn quick_sort_many(input: &[i32]) -> Vec<i32> {
+    let mut arr = input.to_vec();
+    quick_sort_in_place(&mut arr);
+    arr
 }

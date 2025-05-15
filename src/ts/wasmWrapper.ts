@@ -1,6 +1,6 @@
 // Wasm生成時に作成される型定義を使用（実際の型はwasm-pack buildで生成される）
 import init, {
-  quick_sort,
+  quick_sort_many,
   AVLTree as RustAVLTree,
   Graph as RustGraph
 } from '../../src/rust/pkg';
@@ -26,7 +26,8 @@ export async function initWasm(): Promise<void> {
 // クイックソートのラッパー
 export async function wasmQuickSort(arr: number[]): Promise<number[]> {
   await initWasm();
-  return Array.from(quick_sort(new Int32Array(arr)));
+  // return Array.from(quick_sort(new Int32Array(arr)));
+  return Array.from(quick_sort_many(new Int32Array(arr)));
 }
 
 // AVL木のラッパークラス
