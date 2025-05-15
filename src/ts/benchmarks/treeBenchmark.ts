@@ -69,6 +69,10 @@ export async function runTreeBenchmark(size: number): Promise<BenchmarkResult> {
   const wasmTime = wasmAfter - wasmBefore;
   const wasmMemory = (wasmMemoryAfter - wasmMemoryBefore) / (1024 * 1024); // MB単位
   
+  // メモリ解放
+  tsTree.cleanup();
+  wasmTree.cleanup();
+
   return {
     typescript: {
       time: tsTime,

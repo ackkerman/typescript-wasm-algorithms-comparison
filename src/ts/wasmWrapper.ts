@@ -49,6 +49,13 @@ export class WasmAVLTree {
   search(value: number): boolean {
     return this.tree.search(value);
   }
+
+    cleanup(): void {
+    if (typeof this.tree.free === 'function') {
+      this.tree.free(); // Rust側の free() を呼ぶ
+    }
+    this.tree = null as any;
+  }
 }
 
 // グラフのラッパークラス

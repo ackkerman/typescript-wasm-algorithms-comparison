@@ -115,6 +115,11 @@ export class Graph {
     
     return distances;
   }
+
+  cleanup(): void {
+    this.adjacencyList.forEach(edges => edges.length = 0);
+    this.adjacencyList.length = 0;
+  }
   
   // グラフのノード数を取得
   getVertexCount(): number {

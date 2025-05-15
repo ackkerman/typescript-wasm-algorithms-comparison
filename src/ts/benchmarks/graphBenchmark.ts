@@ -76,7 +76,8 @@ export async function runGraphBenchmark(nodeCount: number): Promise<BenchmarkRes
   const wasmMemory = (wasmMemoryAfter - wasmMemoryBefore) / (1024 * 1024); // MB単位
   
   // メモリを解放
-  tsGraph.clear();
+  tsGraph?.cleanup?.();
+  wasmGraph.cleanup?.();
 
   return {
     typescript: {

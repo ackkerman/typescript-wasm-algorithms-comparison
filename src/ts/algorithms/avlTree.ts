@@ -113,5 +113,9 @@ export class AVLTree {
     if (value < node.value) return this.searchNode(node.left, value);
     return this.searchNode(node.right, value);
   }
+
+  cleanup(): void {
+    this.root = null;
+  }
   
 }
