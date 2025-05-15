@@ -2,34 +2,33 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 pub fn quick_sort(mut arr: Vec<i32>) -> Vec<i32> {
-    let len = arr.len();
-    if len <= 1 {
+    if arr.len() <= 1 {
         return arr;
     }
-    
-    quick_sort_internal(&mut arr, 0, (len - 1) as i32);
+    quick_sort_in_place(&mut arr);
     arr
 }
 
-fn quick_sort_internal(arr: &mut Vec<i32>, left: i32, right: i32) {
-    if left < right {
-        let pivot_index = partition(arr, left, right);
-        quick_sort_internal(arr, left, pivot_index - 1);
-        quick_sort_internal(arr, pivot_index + 1, right);
+fn quick_sort_in_place(arr: &mut [i32]) {
+    let len = arr.len();
+    if len <= 1 {
+        return;
     }
+    let pivot_index = partition(arr);
+    quick_sort_in_place(&mut arr[0..pivot_index]);
+    quick_sort_in_place(&mut arr[pivot_index + 1..]);
 }
 
-fn partition(arr: &mut Vec<i32>, left: i32, right: i32) -> i32 {
-    let pivot = arr[right as usize];
-    let mut i = left - 1;
-    
-    for j in left..right {
-        if arr[j as usize] <= pivot {
+fn partition(arr: &mut [i32]) -> usize {
+    let len = arr.len();
+    let pivot = arr[len - 1];
+    let mut i = 0;
+    for j in 0..len - 1 {
+        if arr[j] <= pivot {
+            arr.swap(i, j);
             i += 1;
-            arr.swap(i as usize, j as usize);
         }
     }
-    
-    arr.swap((i + 1) as usize, right as usize);
-    i + 1
+    arr.swap(i, len - 1);
+    i
 }
