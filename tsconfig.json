@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "lib": ["dom", "es2018", "webworker"]
+  },
+  "include": ["src/ts/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

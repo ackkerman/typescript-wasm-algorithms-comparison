@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeScript vs WebAssembly - Comprehensive Benchmark</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .control-panel {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+    .test-section {
+      margin-bottom: 30px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    .progress-container {
+      margin: 20px 0;
+      background-color: #eee;
+      border-radius: 4px;
+      height: 25px;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #4CAF50;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 25px;
+      color: white;
+      transition: width 0.3s;
+    }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .results-table th, .results-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    .results-table th {
+      background-color: #f2f2f2;
+      position: sticky;
+      top: 0;
+    }
+    .results-container {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 20px;
+    }
+    button, select, input {
+      padding: 8px 12px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: white;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    label {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    .chart-container {
+      height: 300px;
+      margin-top: 20px;
+    }
+    .log-container {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      height: 150px;
+      overflow-y: auto;
+      font-family: monospace;
+    }
+    .summary-card {
+      background-color: #e8f5e9;
+      border-left: 4px solid #4CAF50;
+      padding: 10px 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+    .summary-stat {
+      display: inline-block;
+      margin-right: 20px;
+      font-weight: bold;
+    }
+    .tabs {
+      display: flex;
+      margin-top: 10px;
+    }
+    .tab {
+      padding: 8px 15px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      background-color: #f5f5f5;
+      border-radius: 4px 4px 0 0;
+      margin-right: 5px;
+    }
+    .tab.active {
+      background-color: white;
+      border-bottom: 1px solid white;
+    }
+    .tab-content {
+      display: none;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 0 4px 4px 4px;
+      margin-top: -1px;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+  <script src="./benchmark.bundle.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>TypeScript vs WebAssembly Performance Benchmark</h1>
+    <p>Comprehensive benchmark suite for comparing TypeScript and WebAssembly implementations of data structures and algorithms</p>
+
+    <div class="control-panel">
+      <h2>Benchmark Configuration</h2>
+      <div>
+        <label for="iterations">Number of Iterations:</label>
+        <input type="number" id="iterations" min="1" max="1000" value="50" />
+        <span>(higher numbers provide more accurate results but take longer)</span>
+      </div>
+      <div>
+        <label>Benchmark Tests:</label>
+        <div>
+          <input type="checkbox" id="run-sort" checked />
+          <label for="run-sort">Sorting</label>
+          
+          <input type="checkbox" id="run-tree" checked />
+          <label for="run-tree">AVL Tree</label>
+          
+          <input type="checkbox" id="run-graph" checked />
+          <label for="run-graph">Graph</label>
+        </div>
+      </div>
+      <div>
+        <button id="start-benchmark">Start Comprehensive Benchmark</button>
+        <button id="download-results" disabled>Download Results (CSV)</button>
+      </div>
+    </div>
+
+    <div class="test-section" id="sort-section">
+      <h2>Sorting Algorithm</h2>
+      <div>
+        <label>Data Sizes:</label>
+        <div id="sort-sizes">
+          <input type="checkbox" id="sort-1000" checked />
+          <label for="sort-1000">1,000</label>
+          
+          <input type="checkbox" id="sort-10000" checked />
+          <label for="sort-10000">10,000</label>
+          
+          <input type="checkbox" id="sort-50000" checked />
+          <label for="sort-50000">50,000</label>
+          
+          <input type="checkbox" id="sort-100000" checked />
+          <label for="sort-100000">100,000</label>
+          
+          <input type="checkbox" id="sort-500000" />
+          <label for="sort-500000">500,000</label>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="sort-progress">0%</div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" data-target="sort-time-tab">Execution Time</div>
+        <div class="tab" data-target="sort-memory-tab">Memory Usage</div>
+      </div>
+      <div class="tab-content active" id="sort-time-tab">
+        <div class="chart-container">
+          <canvas id="sort-time-chart"></canvas>
+        </div>
+      </div>
+      <div class="tab-content" id="sort-memory-tab">
+        <div class="chart-container">
+          <canvas id="sort-memory-chart"></canvas>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="test-section" id="tree-section">
+      <h2>AVL Tree Operations</h2>
+      <div>
+        <label>Data Sizes:</label>
+        <div id="tree-sizes">
+          <input type="checkbox" id="tree-100" checked />
+          <label for="tree-100">100</label>
+
+          <input type="checkbox" id="tree-500" checked />
+          <label for="tree-500">500</label>
+          
+          <input type="checkbox" id="tree-1000" checked />
+          <label for="tree-1000">1,000</label>
+          
+          <input type="checkbox" id="tree-5000" />
+          <label for="tree-5000">5000</label>
+          
+          <input type="checkbox" id="tree-10000" />
+          <label for="tree-10000">10,000</label>          
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="tree-progress">0%</div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" data-target="tree-time-tab">Execution Time</div>
+        <div class="tab" data-target="tree-memory-tab">Memory Usage</div>
+      </div>
+      <div class="tab-content active" id="tree-time-tab">
+        <div class="chart-container">
+          <canvas id="tree-time-chart"></canvas>
+        </div>
+      </div>
+      <div class="tab-content" id="tree-memory-tab">
+        <div class="chart-container">
+          <canvas id="tree-memory-chart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="test-section" id="graph-section">
+      <h2>Graph Algorithm (Dijkstra)</h2>
+      <div>
+        <label>Node Counts:</label>
+        <div id="graph-sizes">
+          <input type="checkbox" id="graph-100" checked />
+          <label for="graph-100">100</label>
+          
+          <input type="checkbox" id="graph-500" checked />
+          <label for="graph-500">500</label>
+          
+          <input type="checkbox" id="graph-1000" checked />
+          <label for="graph-1000">1,000</label>
+          
+          <input type="checkbox" id="graph-2500" />
+          <label for="graph-2500">2,500</label>
+          
+          <input type="checkbox" id="graph-5000" />
+          <label for="graph-5000">5,000</label>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="graph-progress">0%</div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" data-target="graph-time-tab">Execution Time</div>
+        <div class="tab" data-target="graph-memory-tab">Memory Usage</div>
+      </div>
+      <div class="tab-content active" id="graph-time-tab">
+        <div class="chart-container">
+          <canvas id="graph-time-chart"></canvas>
+        </div>
+      </div>
+      <div class="tab-content" id="graph-memory-tab">
+        <div class="chart-container">
+          <canvas id="graph-memory-chart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="results-container">
+      <h2>Benchmark Results</h2>
+      <div class="summary-card" id="results-summary">
+        <p>Run the benchmark to see summary statistics</p>
+      </div>
+      <table class="results-table" id="results-table">
+        <thead>
+          <tr>
+            <th>Test Type</th>
+            <th>Size</th>
+            <th>Implementation</th>
+            <th>Iteration</th>
+            <th>Time (ms)</th>
+            <th>Memory (MB)</th>
+          </tr>
+        </thead>
+        <tbody id="results-body">
+          <!-- Results will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="log-container" id="log">
+      <!-- Log messages will be inserted here -->
+    </div>
+  </div>
+
+  <script>
+    // This will be filled by the actual benchmark code
+    document.addEventListener('DOMContentLoaded', () => {
+      let benchmarkRunning = false;
+      let allResults = [];
+      const logElement = document.getElementById('log');
+      
+      // チャートオブジェクトを保持する変数
+      const charts = {
+        sortTime: null,
+        sortMemory: null,
+        treeTime: null,
+        treeMemory: null,
+        graphTime: null,
+        graphMemory: null
+      };
+      
+      // タブ切替機能
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const targetId = tab.getAttribute('data-target');
+          const tabContainer = tab.parentElement;
+          
+          // 同じセクション内のすべてのタブから active クラスを削除
+          tabContainer.querySelectorAll('.tab').forEach(t => {
+            t.classList.remove('active');
+          });
+          
+          // クリックされたタブに active クラスを追加
+          tab.classList.add('active');
+          
+          // すべてのタブコンテンツを非表示にする
+          const section = tabContainer.closest('.test-section');
+          section.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+          });
+          
+          // 対応するタブコンテンツを表示
+          section.querySelector(`#${targetId}`).classList.add('active');
+        });
+      });
+
+      // Log function
+      function log(message) {
+        const logLine = document.createElement('div');
+        logLine.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        logElement.appendChild(logLine);
+        logElement.scrollTop = logElement.scrollHeight;
+      }
+      
+      // Update progress bar
+      function updateProgress(elementId, percentage) {
+        const progressBar = document.getElementById(elementId);
+        progressBar.style.width = percentage + '%';
+        progressBar.textContent = percentage + '%';
+      }
+      
+      // Get selected sizes for each benchmark
+      function getSelectedSizes(prefix) {
+        const sizes = [];
+        const checkboxes = document.querySelectorAll(`input[id^="${prefix}-"]:checked`);
+        checkboxes.forEach(checkbox => {
+          sizes.push(parseInt(checkbox.id.split('-')[1]));
+        });
+        return sizes;
+      }
+      
+      // Add a result to the table
+      function addResult(result) {
+        allResults.push(result);
+        
+        const tbody = document.getElementById('results-body');
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+          <td>${result.testType}</td>
+          <td>${result.size.toLocaleString()}</td>
+          <td>${result.implementation}</td>
+          <td>${result.iteration}</td>
+          <td>${result.time.toFixed(2)}</td>
+          <td>${result.memory > 0 ? result.memory.toFixed(2) : 'N/A'}</td>
+        `;
+        
+        tbody.appendChild(row);
+        
+        // 結果が追加されるたびにグラフを更新
+        updateCharts();
+      }
+      
+      // グラフの更新
+      function updateCharts() {
+        // テストタイプごとの結果をグループ化
+        const testTypes = [...new Set(allResults.map(r => r.testType))];
+        
+        testTypes.forEach(testType => {
+          // そのテストタイプの全サイズを取得
+          const sizes = [...new Set(allResults
+            .filter(r => r.testType === testType)
+            .map(r => r.size)
+          )].sort((a, b) => a - b);
+          
+          // テストタイプに対応するチャートキーを決定
+          let timeChartId, memoryChartId, timeChartKey, memoryChartKey;
+          
+          if (testType === 'Sorting') {
+            timeChartId = 'sort-time-chart';
+            memoryChartId = 'sort-memory-chart';
+            timeChartKey = 'sortTime';
+            memoryChartKey = 'sortMemory';
+          } else if (testType === 'AVL Tree') {
+            timeChartId = 'tree-time-chart';
+            memoryChartId = 'tree-memory-chart';
+            timeChartKey = 'treeTime';
+            memoryChartKey = 'treeMemory';
+          } else if (testType === 'Graph') {
+            timeChartId = 'graph-time-chart';
+            memoryChartId = 'graph-memory-chart';
+            timeChartKey = 'graphTime';
+            memoryChartKey = 'graphMemory';
+          } else {
+            return; // 未知のテストタイプなら処理しない
+          }
+          
+          // TypeScriptとWebAssemblyの時間データを準備
+          const timeData = {
+            labels: sizes.map(s => s.toLocaleString()),
+            datasets: [
+              {
+                label: 'TypeScript',
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgb(54, 162, 235)',
+                data: sizes.map(size => {
+                  const results = allResults.filter(r => 
+                    r.testType === testType && 
+                    r.size === size && 
+                    r.implementation === 'TypeScript'
+                  );
+                  return results.length > 0 
+                    ? results.reduce((sum, r) => sum + r.time, 0) / results.length 
+                    : null;
+                })
+              },
+              {
+                label: 'WebAssembly',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: sizes.map(size => {
+                  const results = allResults.filter(r => 
+                    r.testType === testType && 
+                    r.size === size && 
+                    r.implementation === 'WebAssembly'
+                  );
+                  return results.length > 0 
+                    ? results.reduce((sum, r) => sum + r.time, 0) / results.length 
+                    : null;
+                })
+              }
+            ]
+          };
+          
+          // メモリデータを準備
+          const memoryData = {
+            labels: sizes.map(s => s.toLocaleString()),
+            datasets: [
+              {
+                label: 'TypeScript',
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgb(54, 162, 235)',
+                data: sizes.map(size => {
+                  const results = allResults.filter(r => 
+                    r.testType === testType && 
+                    r.size === size && 
+                    r.implementation === 'TypeScript' && 
+                    r.memory > 0
+                  );
+                  return results.length > 0 
+                    ? results.reduce((sum, r) => sum + r.memory, 0) / results.length 
+                    : null;
+                })
+              },
+              {
+                label: 'WebAssembly',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: sizes.map(size => {
+                  const results = allResults.filter(r => 
+                    r.testType === testType && 
+                    r.size === size && 
+                    r.implementation === 'WebAssembly' && 
+                    r.memory > 0
+                  );
+                  return results.length > 0 
+                    ? results.reduce((sum, r) => sum + r.memory, 0) / results.length 
+                    : null;
+                })
+              }
+            ]
+          };
+          
+          // グラフオプション
+          const timeOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Time (ms)'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Data Size'
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: `${testType} Execution Time`
+              }
+            }
+          };
+          
+          const memoryOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Memory (MB)'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Data Size'
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: `${testType} Memory Usage`
+              }
+            }
+          };
+          
+          // 時間グラフを更新または作成
+          if (charts[timeChartKey]) {
+            charts[timeChartKey].data = timeData;
+            charts[timeChartKey].update();
+          } else {
+            const ctx = document.getElementById(timeChartId).getContext('2d');
+            charts[timeChartKey] = new Chart(ctx, {
+              type: 'bar',
+              data: timeData,
+              options: timeOptions
+            });
+          }
+          
+          // メモリグラフを更新または作成
+          if (charts[memoryChartKey]) {
+            charts[memoryChartKey].data = memoryData;
+            charts[memoryChartKey].update();
+          } else {
+            const ctx = document.getElementById(memoryChartId).getContext('2d');
+            charts[memoryChartKey] = new Chart(ctx, {
+              type: 'bar',
+              data: memoryData,
+              options: memoryOptions
+            });
+          }
+        });
+      }
+
+      // Generate CSV from results
+      function generateCSV() {
+        const headers = ['TestType', 'Size', 'Implementation', 'Iteration', 'Time(ms)', 'Memory(MB)'];
+        const csvRows = [headers.join(',')];
+        
+        allResults.forEach(result => {
+          const row = [
+            result.testType,
+            result.size,
+            result.implementation,
+            result.iteration,
+            result.time.toFixed(2),
+            result.memory > 0 ? result.memory.toFixed(2) : 'N/A'
+          ];
+          csvRows.push(row.join(','));
+        });
+        
+        return csvRows.join('\n');
+      }
+      
+      // Update summary statistics
+      function updateSummary() {
+        if (allResults.length === 0) return;
+        
+        const summaryElement = document.getElementById('results-summary');
+        const testTypes = [...new Set(allResults.map(r => r.testType))];
+        const sizesMap = {};
+        
+        testTypes.forEach(testType => {
+          sizesMap[testType] = [...new Set(allResults
+            .filter(r => r.testType === testType)
+            .map(r => r.size))];
+        });
+        
+        let summaryHTML = '<h3>Summary</h3>';
+        
+        testTypes.forEach(testType => {
+          summaryHTML += `<h4>${testType}</h4>`;
+          
+          sizesMap[testType].forEach(size => {
+            const tsResults = allResults.filter(r => 
+              r.testType === testType && 
+              r.size === size && 
+              r.implementation === 'TypeScript'
+            );
+            
+            const wasmResults = allResults.filter(r => 
+              r.testType === testType && 
+              r.size === size && 
+              r.implementation === 'WebAssembly'
+            );
+            
+            if (tsResults.length > 0 && wasmResults.length > 0) {
+              const tsAvgTime = tsResults.reduce((sum, r) => sum + r.time, 0) / tsResults.length;
+              const wasmAvgTime = wasmResults.reduce((sum, r) => sum + r.time, 0) / wasmResults.length;
+              const speedup = tsAvgTime / wasmAvgTime;
+              
+              summaryHTML += `<div>Size: ${size.toLocaleString()} - Wasm is <strong>${speedup.toFixed(2)}x</strong> faster (TS: ${tsAvgTime.toFixed(2)}ms, Wasm: ${wasmAvgTime.toFixed(2)}ms)</div>`;
+            }
+          });
+        });
+        
+        summaryElement.innerHTML = summaryHTML;
+      }
+      
+      // Run a single benchmark iteration
+      async function runBenchmarkIteration(benchmarkFn, testType, size, iteration, totalIterations) {
+        try {
+          const result = await benchmarkFn(size);
+          
+          // Add TypeScript result
+          addResult({
+            testType,
+            size,
+            implementation: 'TypeScript',
+            iteration,
+            time: result.typescript.time,
+            memory: result.typescript.memory
+          });
+          
+          // Add WebAssembly result
+          addResult({
+            testType,
+            size,
+            implementation: 'WebAssembly',
+            iteration,
+            time: result.wasm.time,
+            memory: result.wasm.memory
+          });
+          
+          log(`Completed ${testType} test (size: ${size.toLocaleString()}, iteration: ${iteration}/${totalIterations})`);
+          
+          // Update summary after each new result
+          updateSummary();
+
+          if (typeof benchmarkFn.cleanup === 'function') {
+            benchmarkFn.cleanup();  // benchmark関数側に定義してもOK
+          }
+                    
+          return true;
+        } catch (error) {
+          log(`Error in ${testType} benchmark: ${error.message}`);
+          console.error(error);
+          return false;
+        }
+      }
+      
+      // Start benchmarking
+      document.getElementById('start-benchmark').addEventListener('click', async () => {
+        console.log('Starting comprehensive benchmark...');
+        if (benchmarkRunning) return;
+        
+        benchmarkRunning = true;
+        allResults = [];
+        document.getElementById('results-body').innerHTML = '';
+        document.getElementById('download-results').disabled = true;
+        
+        const iterations = parseInt(document.getElementById('iterations').value);
+        log(`Starting benchmark with ${iterations} iterations per test`);
+        
+        const runSort = document.getElementById('run-sort').checked;
+        const runTree = document.getElementById('run-tree').checked;
+        const runGraph = document.getElementById('run-graph').checked;
+        
+        // Get selected sizes
+        const sortSizes = runSort ? getSelectedSizes('sort') : [];
+        const treeSizes = runTree ? getSelectedSizes('tree') : [];
+        const graphSizes = runGraph ? getSelectedSizes('graph') : [];
+        
+        // Calculate total iterations
+        const totalSortTests = sortSizes.length * iterations;
+        const totalTreeTests = treeSizes.length * iterations;
+        const totalGraphTests = graphSizes.length * iterations;
+        
+        let completedSortTests = 0;
+        let completedTreeTests = 0;
+        let completedGraphTests = 0;
+        
+        // Run sorting benchmarks
+        if (runSort) {
+          for (const size of sortSizes) {
+            for (let i = 1; i <= iterations; i++) {
+              await runBenchmarkIteration(runSortingBenchmark, 'Sorting', size, i, iterations);
+              completedSortTests++;
+              updateProgress('sort-progress', Math.floor(completedSortTests / totalSortTests * 100));
+            }
+          }
+        }
+        
+        // Run tree benchmarks
+        if (runTree) {
+          for (const size of treeSizes) {
+            for (let i = 1; i <= iterations; i++) {
+              await runBenchmarkIteration(runTreeBenchmark, 'AVL Tree', size, i, iterations);
+              completedTreeTests++;
+              updateProgress('tree-progress', Math.floor(completedTreeTests / totalTreeTests * 100));
+            }
+          }
+        }
+        
+        // Run graph benchmarks
+        if (runGraph) {
+          for (const size of graphSizes) {
+            for (let i = 1; i <= iterations; i++) {
+              await runBenchmarkIteration(runGraphBenchmark, 'Graph', size, i, iterations);
+              completedGraphTests++;
+              updateProgress('graph-progress', Math.floor(completedGraphTests / totalGraphTests * 100));
+            }
+          }
+        }
+        
+        // Enable download button
+        document.getElementById('download-results').disabled = false;
+        benchmarkRunning = false;
+        log('Benchmark completed!');
+      });
+      
+      // Download results as CSV
+      document.getElementById('download-results').addEventListener('click', () => {
+        const csv = generateCSV();
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.setAttribute('hidden', '');
+        a.setAttribute('href', url);
+        a.setAttribute('download', `benchmark-results-${new Date().toISOString().slice(0, 10)}.csv`);
+        document.body.appendChild(a);
+        
+        a.click();
+        document.body.removeChild(a);
+      });
+      
+      log('Benchmark page loaded. Configure settings and click "Start Comprehensive Benchmark" to begin.');
+    });
+  </script>
+</body>
+</html>

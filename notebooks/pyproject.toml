@@ -1,0 +1,25 @@
+[project]
+name = "notebooks"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "moxak",email = "moxak.b@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ipykernel (>=6.29.5,<7.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "numpy (>=2.2.5,<3.0.0)",
+    "matplotlib (>=3.10.3,<4.0.0)",
+    "seaborn (>=0.13.2,<0.14.0)",
+    "pydantic (>=2.11.4,<3.0.0)",
+    "scipy (>=1.15.3,<2.0.0)",
+    "jinja2 (>=3.1.6,<4.0.0)",
+    "tabulate (>=0.9.0,<0.10.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

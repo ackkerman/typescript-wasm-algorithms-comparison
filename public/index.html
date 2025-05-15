@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeScript vs WebAssembly Performance Comparison</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .benchmark-container {
+      margin-bottom: 30px;
+    }
+    .result-container {
+      margin-top: 20px;
+    }
+    button {
+      padding: 8px 16px;
+      margin-right: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>TypeScript vs WebAssembly Performance Comparison</h1>
+  
+  <div class="benchmark-container">
+    <h2>Sorting Algorithm Benchmark</h2>
+    <div>
+      <label for="sort-size">Array Size:</label>
+      <select id="sort-size">
+        <option value="10000">10,000</option>
+        <option value="50000">50,000</option>
+        <option value="100000">100,000</option>
+        <option value="500000">500,000</option>
+      </select>
+      <button id="run-sort-benchmark">Run Benchmark</button>
+    </div>
+    <div id="sort-results" class="result-container"></div>
+  </div>
+  
+  <div class="benchmark-container">
+    <h2>AVL Tree Benchmark</h2>
+    <div>
+      <label for="tree-size">Tree Size:</label>
+      <select id="tree-size">
+        <option value="10000">10,000</option>
+        <option value="50000">50,000</option>
+        <option value="100000">100,000</option>
+      </select>
+      <button id="run-tree-benchmark">Run Benchmark</button>
+    </div>
+    <div id="tree-results" class="result-container"></div>
+  </div>
+  
+  <div class="benchmark-container">
+    <h2>Graph Algorithm Benchmark</h2>
+    <div>
+      <label for="graph-size">Graph Size:</label>
+      <select id="graph-size">
+        <option value="100">100 nodes</option>
+        <option value="500">500 nodes</option>
+        <option value="1000">1,000 nodes</option>
+        <option value="5000">5,000 nodes</option>
+      </select>
+      <button id="run-graph-benchmark">Run Benchmark</button>
+    </div>
+    <div id="graph-results" class="result-container"></div>
+  </div>
+
+  <div id="summary"></div>
+<script defer src="index.bundle.js"></script></body>
+</html>
