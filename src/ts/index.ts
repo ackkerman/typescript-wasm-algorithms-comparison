@@ -1,115 +1,54 @@
-import { runSortingBenchmark } from './benchmarks/sortBenchmark';
-import { runTreeBenchmark } from './benchmarks/treeBenchmark';
-import { runGraphBenchmark } from './benchmarks/graphBenchmark';
+import { BenchRequest, BenchResult, Mode } from './types';
 
-// DOMが読み込まれたら実行
+// Worker 初期化
+const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
+
+// Workerへのリクエスト & 応答待機
+function postAndWait(req: BenchRequest): Promise<BenchResult> {
+  return new Promise(resolve => {
+    const handler = (e: MessageEvent) => {
+      console.log('Worker returned:', e.data);
+      resolve(e.data);
+      worker.removeEventListener('message', handler);
+    };
+    worker.addEventListener('message', handler);
+    worker.postMessage(req);
+  });
+}
+
+// DOMイベント設定
 document.addEventListener('DOMContentLoaded', () => {
-  // ソートベンチマークの設定
-  const sortButton = document.getElementById('run-sort-benchmark') as HTMLButtonElement;
-  sortButton.addEventListener('click', async () => {
-    const sizeSelect = document.getElementById('sort-size') as HTMLSelectElement;
-    const size = parseInt(sizeSelect.value, 10);
-    const resultsDiv = document.getElementById('sort-results') as HTMLDivElement;
-    resultsDiv.innerHTML = '<p>Running benchmark...</p>';
-    
-    // 非同期でベンチマークを実行
-    setTimeout(async () => {
-      const results = await runSortingBenchmark(size);
-      displayResults(resultsDiv, results);
-    }, 100);
-  });
-  
-  // ツリーベンチマークの設定
-  const treeButton = document.getElementById('run-tree-benchmark') as HTMLButtonElement;
-  treeButton.addEventListener('click', async () => {
-    const sizeSelect = document.getElementById('tree-size') as HTMLSelectElement;
-    const size = parseInt(sizeSelect.value, 10);
-    const resultsDiv = document.getElementById('tree-results') as HTMLDivElement;
-    resultsDiv.innerHTML = '<p>Running benchmark...</p>';
-    
-    setTimeout(async () => {
-      const results = await runTreeBenchmark(size);
-      displayResults(resultsDiv, results);
-    }, 100);
-  });
-  
-  // グラフベンチマークの設定
-  const graphButton = document.getElementById('run-graph-benchmark') as HTMLButtonElement;
-  graphButton.addEventListener('click', async () => {
-    const sizeSelect = document.getElementById('graph-size') as HTMLSelectElement;
-    const size = parseInt(sizeSelect.value, 10);
-    const resultsDiv = document.getElementById('graph-results') as HTMLDivElement;
-    resultsDiv.innerHTML = '<p>Running benchmark...</p>';
-    
-    setTimeout(async () => {
-      const results = await runGraphBenchmark(size);
-      displayResults(resultsDiv, results);
-    }, 100);
-  });
+  const setups = [
+    { btnId: 'run-sort-benchmark', selectId: 'sort-size', resultId: 'sort-results', mode: 'sort' as Mode },
+    { btnId: 'run-tree-benchmark', selectId: 'tree-size', resultId: 'tree-results', mode: 'tree' as Mode },
+    { btnId: 'run-graph-benchmark', selectId: 'graph-size', resultId: 'graph-results', mode: 'graph' as Mode }
+  ];
+
+  for (const { btnId, selectId, resultId, mode } of setups) {
+    const btn = document.getElementById(btnId) as HTMLButtonElement;
+    const select = document.getElementById(selectId) as HTMLSelectElement;
+    const resultDiv = document.getElementById(resultId) as HTMLDivElement;
+
+    btn.addEventListener('click', async () => {
+      const size = parseInt(select.value, 10);
+      resultDiv.innerHTML = '<p>Running benchmark...</p>';
+
+      const result = await postAndWait({ mode, size });
+      displayResults(resultDiv, result);
+    });
+  }
 });
 
-// 結果表示用の関数
-function displayResults(container: HTMLElement, results: any) {
+// 結果テーブルを表示
+function displayResults(container: HTMLElement, results: BenchResult) {
   const table = document.createElement('table');
-  
-  // テーブルヘッダー
-  const headerRow = document.createElement('tr');
-  const headers = ['Implementation', 'Execution Time (ms)', 'Memory Used (MB)'];
-  
-  headers.forEach(headerText => {
-    const header = document.createElement('th');
-    header.textContent = headerText;
-    headerRow.appendChild(header);
-  });
-  
-  table.appendChild(headerRow);
-  
-  // TypeScript結果
-  const tsRow = document.createElement('tr');
-  const tsNameCell = document.createElement('td');
-  tsNameCell.textContent = 'TypeScript';
-  const tsTimeCell = document.createElement('td');
-  tsTimeCell.textContent = results.typescript.time.toFixed(2);
-  const tsMemoryCell = document.createElement('td');
-  tsMemoryCell.textContent = results.typescript.memory.toFixed(2);
-  
-  tsRow.appendChild(tsNameCell);
-  tsRow.appendChild(tsTimeCell);
-  tsRow.appendChild(tsMemoryCell);
-  table.appendChild(tsRow);
-  
-  // Wasm結果
-  const wasmRow = document.createElement('tr');
-  const wasmNameCell = document.createElement('td');
-  wasmNameCell.textContent = 'WebAssembly';
-  const wasmTimeCell = document.createElement('td');
-  wasmTimeCell.textContent = results.wasm.time.toFixed(2);
-  const wasmMemoryCell = document.createElement('td');
-  wasmMemoryCell.textContent = results.wasm.memory.toFixed(2);
-  
-  wasmRow.appendChild(wasmNameCell);
-  wasmRow.appendChild(wasmTimeCell);
-  wasmRow.appendChild(wasmMemoryCell);
-  table.appendChild(wasmRow);
-  
-  // 比較結果
-  const comparisonRow = document.createElement('tr');
-  const comparisonNameCell = document.createElement('td');
-  comparisonNameCell.textContent = 'Improvement';
-  const timeImprovement = (results.typescript.time / results.wasm.time).toFixed(2);
-  const memoryImprovement = (results.typescript.memory / results.wasm.memory).toFixed(2);
-  
-  const comparisonTimeCell = document.createElement('td');
-  comparisonTimeCell.textContent = `${timeImprovement}x faster`;
-  const comparisonMemoryCell = document.createElement('td');
-  comparisonMemoryCell.textContent = `${memoryImprovement}x less memory`;
-  
-  comparisonRow.appendChild(comparisonNameCell);
-  comparisonRow.appendChild(comparisonTimeCell);
-  comparisonRow.appendChild(comparisonMemoryCell);
-  table.appendChild(comparisonRow);
-  
-  // テーブルを表示
+  table.innerHTML = `
+    <tr><th>Implementation</th><th>Execution Time (ms)</th><th>Memory Used (MB)</th></tr>
+    <tr><td>TypeScript</td><td>${results.typescript.time.toFixed(2)}</td><td>${results.typescript.memory.toFixed(2)}</td></tr>
+    <tr><td>WebAssembly</td><td>${results.wasm.time.toFixed(2)}</td><td>${results.wasm.memory.toFixed(2)}</td></tr>
+    <tr><td>Improvement</td><td>${(results.typescript.time / results.wasm.time).toFixed(2)}x faster</td>
+        <td>${(results.typescript.memory / results.wasm.memory).toFixed(2)}x less memory</td></tr>
+  `;
   container.innerHTML = '';
   container.appendChild(table);
 }

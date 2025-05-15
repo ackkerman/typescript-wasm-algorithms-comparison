@@ -149,7 +149,7 @@
       display: block;
     }
   </style>
-  <script src="./benchmark.bundle.js"></script>
+  <script src="./benchmark.bundle.js" type="module"></script>
 </head>
 <body>
   <div class="container">
@@ -199,7 +199,7 @@
           <input type="checkbox" id="sort-100000" checked />
           <label for="sort-100000">100,000</label>
           
-          <input type="checkbox" id="sort-500000" />
+          <input type="checkbox" id="sort-500000" checked/>
           <label for="sort-500000">500,000</label>
         </div>
       </div>
@@ -238,10 +238,10 @@
           <input type="checkbox" id="tree-1000" checked />
           <label for="tree-1000">1,000</label>
           
-          <input type="checkbox" id="tree-5000" />
+          <input type="checkbox" id="tree-5000" checked />
           <label for="tree-5000">5000</label>
           
-          <input type="checkbox" id="tree-10000" />
+          <input type="checkbox" id="tree-10000" checked/>
           <label for="tree-10000">10,000</label>          
         </div>
       </div>
@@ -280,11 +280,14 @@
           <input type="checkbox" id="graph-1000" checked />
           <label for="graph-1000">1,000</label>
           
-          <input type="checkbox" id="graph-2500" />
+          <input type="checkbox" id="graph-2500" checked />
           <label for="graph-2500">2,500</label>
           
-          <input type="checkbox" id="graph-5000" />
+          <input type="checkbox" id="graph-5000" checked />
           <label for="graph-5000">5,000</label>
+
+          <input type="checkbox" id="graph-10000" checked />
+          <label for="graph-5000">10,000</label>
         </div>
       </div>
       <div class="progress-container">
@@ -689,7 +692,7 @@
       // Run a single benchmark iteration
       async function runBenchmarkIteration(benchmarkFn, testType, size, iteration, totalIterations) {
         try {
-          const result = await benchmarkFn(size);
+          const result = await runBenchmarkWithWorker(testType.toLowerCase().replace(/\s+/g, ''), size);
           
           // Add TypeScript result
           addResult({

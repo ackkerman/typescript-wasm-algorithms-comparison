@@ -1,0 +1,781 @@
+TestType,Size,Implementation,Iteration,Time(ms),Memory(MB)
+Sorting,1000,TypeScript,1,0.10,N/A
+Sorting,1000,WebAssembly,1,0.40,N/A
+Sorting,1000,TypeScript,2,1.90,N/A
+Sorting,1000,WebAssembly,2,0.30,N/A
+Sorting,1000,TypeScript,3,0.20,N/A
+Sorting,1000,WebAssembly,3,0.20,N/A
+Sorting,1000,TypeScript,4,0.20,N/A
+Sorting,1000,WebAssembly,4,0.30,N/A
+Sorting,1000,TypeScript,5,0.10,N/A
+Sorting,1000,WebAssembly,5,0.20,N/A
+Sorting,1000,TypeScript,6,0.10,N/A
+Sorting,1000,WebAssembly,6,0.40,N/A
+Sorting,1000,TypeScript,7,0.20,N/A
+Sorting,1000,WebAssembly,7,0.20,N/A
+Sorting,1000,TypeScript,8,0.10,N/A
+Sorting,1000,WebAssembly,8,0.30,N/A
+Sorting,1000,TypeScript,9,0.10,N/A
+Sorting,1000,WebAssembly,9,0.30,N/A
+Sorting,1000,TypeScript,10,0.10,N/A
+Sorting,1000,WebAssembly,10,0.30,N/A
+Sorting,1000,TypeScript,11,0.10,N/A
+Sorting,1000,WebAssembly,11,0.30,2.61
+Sorting,1000,TypeScript,12,0.10,N/A
+Sorting,1000,WebAssembly,12,0.30,N/A
+Sorting,1000,TypeScript,13,0.10,N/A
+Sorting,1000,WebAssembly,13,0.30,N/A
+Sorting,1000,TypeScript,14,0.20,N/A
+Sorting,1000,WebAssembly,14,0.20,N/A
+Sorting,1000,TypeScript,15,0.20,N/A
+Sorting,1000,WebAssembly,15,0.20,N/A
+Sorting,1000,TypeScript,16,0.10,N/A
+Sorting,1000,WebAssembly,16,0.30,N/A
+Sorting,1000,TypeScript,17,0.20,N/A
+Sorting,1000,WebAssembly,17,0.30,N/A
+Sorting,1000,TypeScript,18,0.10,N/A
+Sorting,1000,WebAssembly,18,0.30,N/A
+Sorting,1000,TypeScript,19,0.10,N/A
+Sorting,1000,WebAssembly,19,0.30,N/A
+Sorting,1000,TypeScript,20,0.20,N/A
+Sorting,1000,WebAssembly,20,0.30,N/A
+Sorting,1000,TypeScript,21,0.10,2.28
+Sorting,1000,WebAssembly,21,0.20,N/A
+Sorting,1000,TypeScript,22,0.20,N/A
+Sorting,1000,WebAssembly,22,5.70,N/A
+Sorting,1000,TypeScript,23,0.20,N/A
+Sorting,1000,WebAssembly,23,0.30,N/A
+Sorting,1000,TypeScript,24,0.10,N/A
+Sorting,1000,WebAssembly,24,0.30,N/A
+Sorting,1000,TypeScript,25,0.10,N/A
+Sorting,1000,WebAssembly,25,0.20,N/A
+Sorting,1000,TypeScript,26,0.20,N/A
+Sorting,1000,WebAssembly,26,0.20,N/A
+Sorting,1000,TypeScript,27,0.20,N/A
+Sorting,1000,WebAssembly,27,0.20,N/A
+Sorting,1000,TypeScript,28,0.10,N/A
+Sorting,1000,WebAssembly,28,0.20,N/A
+Sorting,1000,TypeScript,29,0.10,N/A
+Sorting,1000,WebAssembly,29,0.20,N/A
+Sorting,1000,TypeScript,30,0.20,N/A
+Sorting,1000,WebAssembly,30,0.30,N/A
+Sorting,10000,TypeScript,1,1.10,N/A
+Sorting,10000,WebAssembly,1,1.80,N/A
+Sorting,10000,TypeScript,2,1.00,N/A
+Sorting,10000,WebAssembly,2,1.80,N/A
+Sorting,10000,TypeScript,3,9.30,N/A
+Sorting,10000,WebAssembly,3,1.80,N/A
+Sorting,10000,TypeScript,4,1.10,N/A
+Sorting,10000,WebAssembly,4,1.60,N/A
+Sorting,10000,TypeScript,5,1.20,N/A
+Sorting,10000,WebAssembly,5,7.60,N/A
+Sorting,10000,TypeScript,6,1.10,N/A
+Sorting,10000,WebAssembly,6,1.80,N/A
+Sorting,10000,TypeScript,7,1.10,N/A
+Sorting,10000,WebAssembly,7,2.10,N/A
+Sorting,10000,TypeScript,8,1.20,N/A
+Sorting,10000,WebAssembly,8,1.70,N/A
+Sorting,10000,TypeScript,9,1.10,N/A
+Sorting,10000,WebAssembly,9,1.80,N/A
+Sorting,10000,TypeScript,10,1.00,N/A
+Sorting,10000,WebAssembly,10,1.80,N/A
+Sorting,10000,TypeScript,11,1.10,N/A
+Sorting,10000,WebAssembly,11,2.10,N/A
+Sorting,10000,TypeScript,12,1.10,N/A
+Sorting,10000,WebAssembly,12,2.00,N/A
+Sorting,10000,TypeScript,13,1.00,N/A
+Sorting,10000,WebAssembly,13,1.80,N/A
+Sorting,10000,TypeScript,14,1.10,N/A
+Sorting,10000,WebAssembly,14,8.80,N/A
+Sorting,10000,TypeScript,15,1.20,N/A
+Sorting,10000,WebAssembly,15,2.00,N/A
+Sorting,10000,TypeScript,16,1.20,N/A
+Sorting,10000,WebAssembly,16,1.80,N/A
+Sorting,10000,TypeScript,17,1.40,N/A
+Sorting,10000,WebAssembly,17,2.20,N/A
+Sorting,10000,TypeScript,18,1.20,N/A
+Sorting,10000,WebAssembly,18,2.20,N/A
+Sorting,10000,TypeScript,19,1.30,N/A
+Sorting,10000,WebAssembly,19,1.90,N/A
+Sorting,10000,TypeScript,20,1.10,N/A
+Sorting,10000,WebAssembly,20,1.90,N/A
+Sorting,10000,TypeScript,21,1.30,N/A
+Sorting,10000,WebAssembly,21,2.10,N/A
+Sorting,10000,TypeScript,22,1.20,N/A
+Sorting,10000,WebAssembly,22,2.00,N/A
+Sorting,10000,TypeScript,23,1.50,N/A
+Sorting,10000,WebAssembly,23,14.80,N/A
+Sorting,10000,TypeScript,24,1.40,N/A
+Sorting,10000,WebAssembly,24,2.00,N/A
+Sorting,10000,TypeScript,25,1.20,N/A
+Sorting,10000,WebAssembly,25,1.90,N/A
+Sorting,10000,TypeScript,26,1.10,N/A
+Sorting,10000,WebAssembly,26,2.60,N/A
+Sorting,10000,TypeScript,27,1.10,N/A
+Sorting,10000,WebAssembly,27,1.80,N/A
+Sorting,10000,TypeScript,28,1.10,14.16
+Sorting,10000,WebAssembly,28,9.10,N/A
+Sorting,10000,TypeScript,29,1.20,N/A
+Sorting,10000,WebAssembly,29,2.10,N/A
+Sorting,10000,TypeScript,30,1.20,N/A
+Sorting,10000,WebAssembly,30,1.80,N/A
+Sorting,50000,TypeScript,1,6.30,N/A
+Sorting,50000,WebAssembly,1,10.10,3.11
+Sorting,50000,TypeScript,2,6.30,N/A
+Sorting,50000,WebAssembly,2,9.60,N/A
+Sorting,50000,TypeScript,3,6.10,N/A
+Sorting,50000,WebAssembly,3,9.90,N/A
+Sorting,50000,TypeScript,4,6.20,N/A
+Sorting,50000,WebAssembly,4,9.70,N/A
+Sorting,50000,TypeScript,5,6.50,N/A
+Sorting,50000,WebAssembly,5,10.10,N/A
+Sorting,50000,TypeScript,6,6.30,N/A
+Sorting,50000,WebAssembly,6,9.70,N/A
+Sorting,50000,TypeScript,7,6.10,N/A
+Sorting,50000,WebAssembly,7,9.60,N/A
+Sorting,50000,TypeScript,8,6.20,N/A
+Sorting,50000,WebAssembly,8,10.20,N/A
+Sorting,50000,TypeScript,9,6.10,N/A
+Sorting,50000,WebAssembly,9,9.60,N/A
+Sorting,50000,TypeScript,10,6.20,N/A
+Sorting,50000,WebAssembly,10,10.20,0.19
+Sorting,50000,TypeScript,11,6.30,N/A
+Sorting,50000,WebAssembly,11,10.20,N/A
+Sorting,50000,TypeScript,12,13.10,N/A
+Sorting,50000,WebAssembly,12,9.60,N/A
+Sorting,50000,TypeScript,13,6.10,N/A
+Sorting,50000,WebAssembly,13,9.60,N/A
+Sorting,50000,TypeScript,14,12.60,N/A
+Sorting,50000,WebAssembly,14,9.90,0.33
+Sorting,50000,TypeScript,15,6.20,N/A
+Sorting,50000,WebAssembly,15,9.90,N/A
+Sorting,50000,TypeScript,16,13.20,N/A
+Sorting,50000,WebAssembly,16,9.70,0.36
+Sorting,50000,TypeScript,17,6.30,N/A
+Sorting,50000,WebAssembly,17,9.70,N/A
+Sorting,50000,TypeScript,18,13.00,N/A
+Sorting,50000,WebAssembly,18,9.80,N/A
+Sorting,50000,TypeScript,19,6.20,N/A
+Sorting,50000,WebAssembly,19,10.30,N/A
+Sorting,50000,TypeScript,20,6.00,N/A
+Sorting,50000,WebAssembly,20,10.00,N/A
+Sorting,50000,TypeScript,21,6.00,N/A
+Sorting,50000,WebAssembly,21,10.10,N/A
+Sorting,50000,TypeScript,22,6.00,N/A
+Sorting,50000,WebAssembly,22,16.70,3.41
+Sorting,50000,TypeScript,23,6.10,N/A
+Sorting,50000,WebAssembly,23,10.50,N/A
+Sorting,50000,TypeScript,24,6.20,N/A
+Sorting,50000,WebAssembly,24,11.20,20.74
+Sorting,50000,TypeScript,25,6.80,N/A
+Sorting,50000,WebAssembly,25,10.70,N/A
+Sorting,50000,TypeScript,26,6.70,N/A
+Sorting,50000,WebAssembly,26,23.00,N/A
+Sorting,50000,TypeScript,27,6.10,N/A
+Sorting,50000,WebAssembly,27,11.30,N/A
+Sorting,50000,TypeScript,28,6.10,N/A
+Sorting,50000,WebAssembly,28,9.70,12.18
+Sorting,50000,TypeScript,29,6.80,N/A
+Sorting,50000,WebAssembly,29,10.80,N/A
+Sorting,50000,TypeScript,30,6.00,N/A
+Sorting,50000,WebAssembly,30,11.00,20.74
+Sorting,100000,TypeScript,1,13.00,N/A
+Sorting,100000,WebAssembly,1,20.60,N/A
+Sorting,100000,TypeScript,2,12.80,N/A
+Sorting,100000,WebAssembly,2,21.40,18.66
+Sorting,100000,TypeScript,3,13.30,N/A
+Sorting,100000,WebAssembly,3,32.80,N/A
+Sorting,100000,TypeScript,4,13.10,N/A
+Sorting,100000,WebAssembly,4,20.40,N/A
+Sorting,100000,TypeScript,5,12.70,N/A
+Sorting,100000,WebAssembly,5,20.40,N/A
+Sorting,100000,TypeScript,6,13.60,22.19
+Sorting,100000,WebAssembly,6,20.50,N/A
+Sorting,100000,TypeScript,7,12.80,N/A
+Sorting,100000,WebAssembly,7,22.70,N/A
+Sorting,100000,TypeScript,8,13.70,N/A
+Sorting,100000,WebAssembly,8,22.40,N/A
+Sorting,100000,TypeScript,9,13.80,N/A
+Sorting,100000,WebAssembly,9,21.80,N/A
+Sorting,100000,TypeScript,10,13.60,N/A
+Sorting,100000,WebAssembly,10,21.80,N/A
+Sorting,100000,TypeScript,11,13.70,N/A
+Sorting,100000,WebAssembly,11,30.40,N/A
+Sorting,100000,TypeScript,12,12.90,N/A
+Sorting,100000,WebAssembly,12,20.60,N/A
+Sorting,100000,TypeScript,13,12.90,N/A
+Sorting,100000,WebAssembly,13,20.80,N/A
+Sorting,100000,TypeScript,14,12.90,22.17
+Sorting,100000,WebAssembly,14,20.20,N/A
+Sorting,100000,TypeScript,15,12.80,N/A
+Sorting,100000,WebAssembly,15,19.20,N/A
+Sorting,100000,TypeScript,16,12.20,N/A
+Sorting,100000,WebAssembly,16,20.00,29.31
+Sorting,100000,TypeScript,17,23.20,N/A
+Sorting,100000,WebAssembly,17,19.70,N/A
+Sorting,100000,TypeScript,18,12.40,N/A
+Sorting,100000,WebAssembly,18,19.90,N/A
+Sorting,100000,TypeScript,19,12.80,N/A
+Sorting,100000,WebAssembly,19,20.60,N/A
+Sorting,100000,TypeScript,20,13.90,N/A
+Sorting,100000,WebAssembly,20,21.60,N/A
+Sorting,100000,TypeScript,21,13.40,19.86
+Sorting,100000,WebAssembly,21,20.40,N/A
+Sorting,100000,TypeScript,22,12.70,N/A
+Sorting,100000,WebAssembly,22,29.30,N/A
+Sorting,100000,TypeScript,23,12.70,N/A
+Sorting,100000,WebAssembly,23,20.10,N/A
+Sorting,100000,TypeScript,24,13.20,N/A
+Sorting,100000,WebAssembly,24,21.40,N/A
+Sorting,100000,TypeScript,25,22.10,N/A
+Sorting,100000,WebAssembly,25,19.70,N/A
+Sorting,100000,TypeScript,26,12.50,N/A
+Sorting,100000,WebAssembly,26,19.40,26.91
+Sorting,100000,TypeScript,27,13.20,N/A
+Sorting,100000,WebAssembly,27,19.50,N/A
+Sorting,100000,TypeScript,28,12.90,N/A
+Sorting,100000,WebAssembly,28,20.20,N/A
+Sorting,100000,TypeScript,29,12.50,19.92
+Sorting,100000,WebAssembly,29,21.00,N/A
+Sorting,100000,TypeScript,30,13.10,N/A
+Sorting,100000,WebAssembly,30,36.40,N/A
+Sorting,500000,TypeScript,1,68.70,32.05
+Sorting,500000,WebAssembly,1,110.90,1.17
+Sorting,500000,TypeScript,2,71.10,32.28
+Sorting,500000,WebAssembly,2,111.50,N/A
+Sorting,500000,TypeScript,3,70.30,N/A
+Sorting,500000,WebAssembly,3,115.50,N/A
+Sorting,500000,TypeScript,4,69.70,32.18
+Sorting,500000,WebAssembly,4,112.20,N/A
+Sorting,500000,TypeScript,5,75.30,N/A
+Sorting,500000,WebAssembly,5,110.20,48.88
+Sorting,500000,TypeScript,6,69.60,N/A
+Sorting,500000,WebAssembly,6,123.60,N/A
+Sorting,500000,TypeScript,7,70.30,32.33
+Sorting,500000,WebAssembly,7,111.00,0.74
+Sorting,500000,TypeScript,8,75.20,N/A
+Sorting,500000,WebAssembly,8,113.40,N/A
+Sorting,500000,TypeScript,9,69.00,32.22
+Sorting,500000,WebAssembly,9,119.60,N/A
+Sorting,500000,TypeScript,10,76.20,32.28
+Sorting,500000,WebAssembly,10,116.60,N/A
+Sorting,500000,TypeScript,11,69.90,N/A
+Sorting,500000,WebAssembly,11,112.70,N/A
+Sorting,500000,TypeScript,12,72.80,32.17
+Sorting,500000,WebAssembly,12,121.70,N/A
+Sorting,500000,TypeScript,13,80.10,N/A
+Sorting,500000,WebAssembly,13,113.60,48.79
+Sorting,500000,TypeScript,14,70.40,N/A
+Sorting,500000,WebAssembly,14,114.20,N/A
+Sorting,500000,TypeScript,15,72.20,32.14
+Sorting,500000,WebAssembly,15,109.40,N/A
+Sorting,500000,TypeScript,16,76.20,N/A
+Sorting,500000,WebAssembly,16,114.40,N/A
+Sorting,500000,TypeScript,17,71.90,32.13
+Sorting,500000,WebAssembly,17,116.60,N/A
+Sorting,500000,TypeScript,18,74.80,32.23
+Sorting,500000,WebAssembly,18,109.20,N/A
+Sorting,500000,TypeScript,19,72.90,N/A
+Sorting,500000,WebAssembly,19,109.40,N/A
+Sorting,500000,TypeScript,20,69.20,32.21
+Sorting,500000,WebAssembly,20,116.30,N/A
+Sorting,500000,TypeScript,21,74.80,N/A
+Sorting,500000,WebAssembly,21,109.10,48.82
+Sorting,500000,TypeScript,22,70.20,N/A
+Sorting,500000,WebAssembly,22,111.90,N/A
+Sorting,500000,TypeScript,23,73.30,32.18
+Sorting,500000,WebAssembly,23,108.50,N/A
+Sorting,500000,TypeScript,24,75.60,N/A
+Sorting,500000,WebAssembly,24,114.00,N/A
+Sorting,500000,TypeScript,25,69.70,32.14
+Sorting,500000,WebAssembly,25,114.10,N/A
+Sorting,500000,TypeScript,26,71.20,32.28
+Sorting,500000,WebAssembly,26,118.40,N/A
+Sorting,500000,TypeScript,27,71.10,N/A
+Sorting,500000,WebAssembly,27,111.60,N/A
+Sorting,500000,TypeScript,28,72.10,32.17
+Sorting,500000,WebAssembly,28,124.10,N/A
+Sorting,500000,TypeScript,29,72.50,N/A
+Sorting,500000,WebAssembly,29,108.00,48.84
+Sorting,500000,TypeScript,30,69.60,N/A
+Sorting,500000,WebAssembly,30,120.20,N/A
+AVL Tree,100,TypeScript,1,0.70,N/A
+AVL Tree,100,WebAssembly,1,1.30,N/A
+AVL Tree,100,TypeScript,2,0.50,N/A
+AVL Tree,100,WebAssembly,2,1.20,N/A
+AVL Tree,100,TypeScript,3,0.30,N/A
+AVL Tree,100,WebAssembly,3,1.10,N/A
+AVL Tree,100,TypeScript,4,0.40,N/A
+AVL Tree,100,WebAssembly,4,1.10,N/A
+AVL Tree,100,TypeScript,5,0.50,N/A
+AVL Tree,100,WebAssembly,5,1.00,N/A
+AVL Tree,100,TypeScript,6,0.40,N/A
+AVL Tree,100,WebAssembly,6,1.10,N/A
+AVL Tree,100,TypeScript,7,0.50,N/A
+AVL Tree,100,WebAssembly,7,0.90,N/A
+AVL Tree,100,TypeScript,8,0.20,N/A
+AVL Tree,100,WebAssembly,8,0.90,N/A
+AVL Tree,100,TypeScript,9,0.30,N/A
+AVL Tree,100,WebAssembly,9,1.00,N/A
+AVL Tree,100,TypeScript,10,0.30,N/A
+AVL Tree,100,WebAssembly,10,0.80,N/A
+AVL Tree,100,TypeScript,11,0.20,N/A
+AVL Tree,100,WebAssembly,11,0.90,N/A
+AVL Tree,100,TypeScript,12,0.20,N/A
+AVL Tree,100,WebAssembly,12,1.00,N/A
+AVL Tree,100,TypeScript,13,0.40,N/A
+AVL Tree,100,WebAssembly,13,1.00,N/A
+AVL Tree,100,TypeScript,14,0.40,N/A
+AVL Tree,100,WebAssembly,14,0.90,N/A
+AVL Tree,100,TypeScript,15,0.30,N/A
+AVL Tree,100,WebAssembly,15,1.00,N/A
+AVL Tree,100,TypeScript,16,0.40,N/A
+AVL Tree,100,WebAssembly,16,1.20,N/A
+AVL Tree,100,TypeScript,17,0.20,N/A
+AVL Tree,100,WebAssembly,17,1.30,N/A
+AVL Tree,100,TypeScript,18,0.40,N/A
+AVL Tree,100,WebAssembly,18,1.40,N/A
+AVL Tree,100,TypeScript,19,0.40,N/A
+AVL Tree,100,WebAssembly,19,1.10,N/A
+AVL Tree,100,TypeScript,20,0.10,N/A
+AVL Tree,100,WebAssembly,20,0.90,N/A
+AVL Tree,100,TypeScript,21,0.20,N/A
+AVL Tree,100,WebAssembly,21,1.30,N/A
+AVL Tree,100,TypeScript,22,0.10,N/A
+AVL Tree,100,WebAssembly,22,0.90,N/A
+AVL Tree,100,TypeScript,23,0.10,N/A
+AVL Tree,100,WebAssembly,23,1.00,N/A
+AVL Tree,100,TypeScript,24,0.20,N/A
+AVL Tree,100,WebAssembly,24,1.00,N/A
+AVL Tree,100,TypeScript,25,0.20,N/A
+AVL Tree,100,WebAssembly,25,1.00,N/A
+AVL Tree,100,TypeScript,26,0.20,N/A
+AVL Tree,100,WebAssembly,26,0.90,N/A
+AVL Tree,100,TypeScript,27,0.20,N/A
+AVL Tree,100,WebAssembly,27,1.10,N/A
+AVL Tree,100,TypeScript,28,0.20,N/A
+AVL Tree,100,WebAssembly,28,0.90,N/A
+AVL Tree,100,TypeScript,29,0.20,N/A
+AVL Tree,100,WebAssembly,29,1.00,11.22
+AVL Tree,100,TypeScript,30,0.20,N/A
+AVL Tree,100,WebAssembly,30,1.00,N/A
+AVL Tree,500,TypeScript,1,0.30,N/A
+AVL Tree,500,WebAssembly,1,16.90,N/A
+AVL Tree,500,TypeScript,2,0.60,N/A
+AVL Tree,500,WebAssembly,2,18.70,3.98
+AVL Tree,500,TypeScript,3,0.30,N/A
+AVL Tree,500,WebAssembly,3,16.50,N/A
+AVL Tree,500,TypeScript,4,0.30,N/A
+AVL Tree,500,WebAssembly,4,17.00,7.86
+AVL Tree,500,TypeScript,5,0.30,N/A
+AVL Tree,500,WebAssembly,5,16.70,N/A
+AVL Tree,500,TypeScript,6,0.40,N/A
+AVL Tree,500,WebAssembly,6,16.60,7.86
+AVL Tree,500,TypeScript,7,0.20,N/A
+AVL Tree,500,WebAssembly,7,16.70,N/A
+AVL Tree,500,TypeScript,8,0.40,N/A
+AVL Tree,500,WebAssembly,8,16.40,N/A
+AVL Tree,500,TypeScript,9,0.20,N/A
+AVL Tree,500,WebAssembly,9,17.60,N/A
+AVL Tree,500,TypeScript,10,0.30,N/A
+AVL Tree,500,WebAssembly,10,17.20,N/A
+AVL Tree,500,TypeScript,11,0.40,N/A
+AVL Tree,500,WebAssembly,11,17.20,3.98
+AVL Tree,500,TypeScript,12,0.30,N/A
+AVL Tree,500,WebAssembly,12,16.50,N/A
+AVL Tree,500,TypeScript,13,0.40,N/A
+AVL Tree,500,WebAssembly,13,17.00,7.82
+AVL Tree,500,TypeScript,14,0.20,N/A
+AVL Tree,500,WebAssembly,14,17.00,N/A
+AVL Tree,500,TypeScript,15,0.20,N/A
+AVL Tree,500,WebAssembly,15,16.80,7.80
+AVL Tree,500,TypeScript,16,0.30,N/A
+AVL Tree,500,WebAssembly,16,18.10,N/A
+AVL Tree,500,TypeScript,17,0.40,N/A
+AVL Tree,500,WebAssembly,17,18.20,3.98
+AVL Tree,500,TypeScript,18,0.30,N/A
+AVL Tree,500,WebAssembly,18,18.70,N/A
+AVL Tree,500,TypeScript,19,0.30,N/A
+AVL Tree,500,WebAssembly,19,18.80,N/A
+AVL Tree,500,TypeScript,20,0.30,N/A
+AVL Tree,500,WebAssembly,20,19.10,3.98
+AVL Tree,500,TypeScript,21,0.40,N/A
+AVL Tree,500,WebAssembly,21,18.80,N/A
+AVL Tree,500,TypeScript,22,0.30,N/A
+AVL Tree,500,WebAssembly,22,18.40,N/A
+AVL Tree,500,TypeScript,23,0.20,N/A
+AVL Tree,500,WebAssembly,23,16.40,N/A
+AVL Tree,500,TypeScript,24,0.30,N/A
+AVL Tree,500,WebAssembly,24,17.20,N/A
+AVL Tree,500,TypeScript,25,0.30,N/A
+AVL Tree,500,WebAssembly,25,17.30,N/A
+AVL Tree,500,TypeScript,26,0.40,N/A
+AVL Tree,500,WebAssembly,26,17.10,N/A
+AVL Tree,500,TypeScript,27,0.30,N/A
+AVL Tree,500,WebAssembly,27,16.90,N/A
+AVL Tree,500,TypeScript,28,0.20,N/A
+AVL Tree,500,WebAssembly,28,18.30,3.96
+AVL Tree,500,TypeScript,29,0.30,N/A
+AVL Tree,500,WebAssembly,29,17.50,N/A
+AVL Tree,500,TypeScript,30,0.80,N/A
+AVL Tree,500,WebAssembly,30,18.40,N/A
+AVL Tree,1000,TypeScript,1,0.60,N/A
+AVL Tree,1000,WebAssembly,1,67.70,0.11
+AVL Tree,1000,TypeScript,2,0.40,N/A
+AVL Tree,1000,WebAssembly,2,68.00,4.12
+AVL Tree,1000,TypeScript,3,0.40,N/A
+AVL Tree,1000,WebAssembly,3,67.40,4.10
+AVL Tree,1000,TypeScript,4,0.50,N/A
+AVL Tree,1000,WebAssembly,4,69.30,4.09
+AVL Tree,1000,TypeScript,5,0.40,N/A
+AVL Tree,1000,WebAssembly,5,69.00,4.09
+AVL Tree,1000,TypeScript,6,0.50,N/A
+AVL Tree,1000,WebAssembly,6,68.30,4.09
+AVL Tree,1000,TypeScript,7,0.50,N/A
+AVL Tree,1000,WebAssembly,7,67.00,4.09
+AVL Tree,1000,TypeScript,8,0.40,N/A
+AVL Tree,1000,WebAssembly,8,69.60,N/A
+AVL Tree,1000,TypeScript,9,0.50,N/A
+AVL Tree,1000,WebAssembly,9,67.80,4.12
+AVL Tree,1000,TypeScript,10,0.30,N/A
+AVL Tree,1000,WebAssembly,10,66.00,4.08
+AVL Tree,1000,TypeScript,11,0.30,N/A
+AVL Tree,1000,WebAssembly,11,68.50,4.09
+AVL Tree,1000,TypeScript,12,0.40,N/A
+AVL Tree,1000,WebAssembly,12,66.40,4.09
+AVL Tree,1000,TypeScript,13,0.40,N/A
+AVL Tree,1000,WebAssembly,13,66.80,4.09
+AVL Tree,1000,TypeScript,14,0.40,N/A
+AVL Tree,1000,WebAssembly,14,66.30,4.13
+AVL Tree,1000,TypeScript,15,0.40,N/A
+AVL Tree,1000,WebAssembly,15,74.60,0.11
+AVL Tree,1000,TypeScript,16,0.40,N/A
+AVL Tree,1000,WebAssembly,16,66.60,4.09
+AVL Tree,1000,TypeScript,17,0.40,N/A
+AVL Tree,1000,WebAssembly,17,67.80,4.09
+AVL Tree,1000,TypeScript,18,0.50,N/A
+AVL Tree,1000,WebAssembly,18,66.20,4.11
+AVL Tree,1000,TypeScript,19,0.30,N/A
+AVL Tree,1000,WebAssembly,19,72.10,4.09
+AVL Tree,1000,TypeScript,20,0.40,N/A
+AVL Tree,1000,WebAssembly,20,75.00,4.09
+AVL Tree,1000,TypeScript,21,0.50,N/A
+AVL Tree,1000,WebAssembly,21,71.40,4.09
+AVL Tree,1000,TypeScript,22,0.30,N/A
+AVL Tree,1000,WebAssembly,22,74.70,4.10
+AVL Tree,1000,TypeScript,23,0.40,N/A
+AVL Tree,1000,WebAssembly,23,68.50,0.11
+AVL Tree,1000,TypeScript,24,0.30,N/A
+AVL Tree,1000,WebAssembly,24,67.80,4.05
+AVL Tree,1000,TypeScript,25,0.30,N/A
+AVL Tree,1000,WebAssembly,25,69.30,4.04
+AVL Tree,1000,TypeScript,26,0.40,N/A
+AVL Tree,1000,WebAssembly,26,65.60,4.04
+AVL Tree,1000,TypeScript,27,0.40,N/A
+AVL Tree,1000,WebAssembly,27,67.90,4.04
+AVL Tree,1000,TypeScript,28,0.40,N/A
+AVL Tree,1000,WebAssembly,28,66.80,4.04
+AVL Tree,1000,TypeScript,29,0.40,N/A
+AVL Tree,1000,WebAssembly,29,69.50,4.04
+AVL Tree,1000,TypeScript,30,0.40,N/A
+AVL Tree,1000,WebAssembly,30,66.20,0.11
+AVL Tree,5000,TypeScript,1,1.40,N/A
+AVL Tree,5000,WebAssembly,1,1794.40,4.41
+AVL Tree,5000,TypeScript,2,1.60,N/A
+AVL Tree,5000,WebAssembly,2,2096.50,4.57
+AVL Tree,5000,TypeScript,3,1.60,N/A
+AVL Tree,5000,WebAssembly,3,2429.00,4.61
+AVL Tree,5000,TypeScript,4,1.70,N/A
+AVL Tree,5000,WebAssembly,4,2187.30,4.58
+AVL Tree,5000,TypeScript,5,1.60,N/A
+AVL Tree,5000,WebAssembly,5,2110.50,4.55
+AVL Tree,5000,TypeScript,6,1.80,N/A
+AVL Tree,5000,WebAssembly,6,2038.20,0.36
+AVL Tree,5000,TypeScript,7,1.60,N/A
+AVL Tree,5000,WebAssembly,7,2077.50,4.53
+AVL Tree,5000,TypeScript,8,1.60,N/A
+AVL Tree,5000,WebAssembly,8,2152.60,4.53
+AVL Tree,5000,TypeScript,9,2.10,N/A
+AVL Tree,5000,WebAssembly,9,2253.20,4.53
+AVL Tree,5000,TypeScript,10,2.00,N/A
+AVL Tree,5000,WebAssembly,10,1951.90,4.52
+AVL Tree,5000,TypeScript,11,1.50,N/A
+AVL Tree,5000,WebAssembly,11,2124.90,4.53
+AVL Tree,5000,TypeScript,12,1.80,N/A
+AVL Tree,5000,WebAssembly,12,2440.70,4.56
+AVL Tree,5000,TypeScript,13,1.70,N/A
+AVL Tree,5000,WebAssembly,13,2222.40,0.36
+AVL Tree,5000,TypeScript,14,1.80,N/A
+AVL Tree,5000,WebAssembly,14,2019.80,4.52
+AVL Tree,5000,TypeScript,15,1.50,N/A
+AVL Tree,5000,WebAssembly,15,2052.00,4.52
+AVL Tree,5000,TypeScript,16,1.90,N/A
+AVL Tree,5000,WebAssembly,16,1983.50,4.55
+AVL Tree,5000,TypeScript,17,1.70,N/A
+AVL Tree,5000,WebAssembly,17,1965.70,4.29
+AVL Tree,5000,TypeScript,18,1.50,N/A
+AVL Tree,5000,WebAssembly,18,2065.10,4.29
+AVL Tree,5000,TypeScript,19,44.00,N/A
+AVL Tree,5000,WebAssembly,19,2082.40,0.12
+AVL Tree,5000,TypeScript,20,2.00,N/A
+AVL Tree,5000,WebAssembly,20,1978.90,4.57
+AVL Tree,5000,TypeScript,21,1.50,N/A
+AVL Tree,5000,WebAssembly,21,1942.70,4.52
+AVL Tree,5000,TypeScript,22,1.60,N/A
+AVL Tree,5000,WebAssembly,22,1927.60,4.52
+AVL Tree,5000,TypeScript,23,1.80,N/A
+AVL Tree,5000,WebAssembly,23,2023.10,4.52
+AVL Tree,5000,TypeScript,24,1.50,N/A
+AVL Tree,5000,WebAssembly,24,1984.10,4.52
+AVL Tree,5000,TypeScript,25,1.60,N/A
+AVL Tree,5000,WebAssembly,25,1919.30,4.54
+AVL Tree,5000,TypeScript,26,1.90,N/A
+AVL Tree,5000,WebAssembly,26,1919.20,0.36
+AVL Tree,5000,TypeScript,27,1.80,N/A
+AVL Tree,5000,WebAssembly,27,2067.70,4.53
+AVL Tree,5000,TypeScript,28,1.70,N/A
+AVL Tree,5000,WebAssembly,28,2179.90,4.52
+AVL Tree,5000,TypeScript,29,1.60,N/A
+AVL Tree,5000,WebAssembly,29,1940.10,4.53
+AVL Tree,5000,TypeScript,30,1.50,N/A
+AVL Tree,5000,WebAssembly,30,1937.80,4.52
+Graph,100,TypeScript,1,14.50,N/A
+Graph,100,WebAssembly,1,0.80,N/A
+Graph,100,TypeScript,2,0.40,N/A
+Graph,100,WebAssembly,2,0.20,N/A
+Graph,100,TypeScript,3,0.40,N/A
+Graph,100,WebAssembly,3,0.40,N/A
+Graph,100,TypeScript,4,0.40,N/A
+Graph,100,WebAssembly,4,0.20,N/A
+Graph,100,TypeScript,5,0.30,N/A
+Graph,100,WebAssembly,5,0.20,N/A
+Graph,100,TypeScript,6,0.30,N/A
+Graph,100,WebAssembly,6,0.20,N/A
+Graph,100,TypeScript,7,0.20,N/A
+Graph,100,WebAssembly,7,0.30,N/A
+Graph,100,TypeScript,8,0.30,N/A
+Graph,100,WebAssembly,8,0.20,N/A
+Graph,100,TypeScript,9,0.30,N/A
+Graph,100,WebAssembly,9,0.20,N/A
+Graph,100,TypeScript,10,0.30,N/A
+Graph,100,WebAssembly,10,0.40,N/A
+Graph,100,TypeScript,11,0.30,N/A
+Graph,100,WebAssembly,11,0.20,N/A
+Graph,100,TypeScript,12,0.20,N/A
+Graph,100,WebAssembly,12,0.20,N/A
+Graph,100,TypeScript,13,0.20,N/A
+Graph,100,WebAssembly,13,0.30,N/A
+Graph,100,TypeScript,14,0.20,N/A
+Graph,100,WebAssembly,14,0.30,N/A
+Graph,100,TypeScript,15,0.20,N/A
+Graph,100,WebAssembly,15,0.30,N/A
+Graph,100,TypeScript,16,0.20,N/A
+Graph,100,WebAssembly,16,0.30,N/A
+Graph,100,TypeScript,17,0.10,N/A
+Graph,100,WebAssembly,17,0.30,N/A
+Graph,100,TypeScript,18,0.30,N/A
+Graph,100,WebAssembly,18,0.10,N/A
+Graph,100,TypeScript,19,0.20,N/A
+Graph,100,WebAssembly,19,0.10,N/A
+Graph,100,TypeScript,20,0.30,N/A
+Graph,100,WebAssembly,20,0.40,N/A
+Graph,100,TypeScript,21,0.10,N/A
+Graph,100,WebAssembly,21,0.20,N/A
+Graph,100,TypeScript,22,0.30,N/A
+Graph,100,WebAssembly,22,0.20,N/A
+Graph,100,TypeScript,23,0.20,N/A
+Graph,100,WebAssembly,23,0.20,N/A
+Graph,100,TypeScript,24,0.20,N/A
+Graph,100,WebAssembly,24,0.30,N/A
+Graph,100,TypeScript,25,0.10,N/A
+Graph,100,WebAssembly,25,0.30,N/A
+Graph,100,TypeScript,26,0.00,N/A
+Graph,100,WebAssembly,26,0.30,N/A
+Graph,100,TypeScript,27,0.10,N/A
+Graph,100,WebAssembly,27,0.20,N/A
+Graph,100,TypeScript,28,0.20,N/A
+Graph,100,WebAssembly,28,0.30,N/A
+Graph,100,TypeScript,29,0.10,N/A
+Graph,100,WebAssembly,29,0.20,N/A
+Graph,100,TypeScript,30,0.10,N/A
+Graph,100,WebAssembly,30,0.30,N/A
+Graph,500,TypeScript,1,0.40,N/A
+Graph,500,WebAssembly,1,0.70,N/A
+Graph,500,TypeScript,2,0.40,N/A
+Graph,500,WebAssembly,2,0.70,N/A
+Graph,500,TypeScript,3,0.50,N/A
+Graph,500,WebAssembly,3,0.60,N/A
+Graph,500,TypeScript,4,0.30,N/A
+Graph,500,WebAssembly,4,0.70,N/A
+Graph,500,TypeScript,5,0.40,N/A
+Graph,500,WebAssembly,5,0.60,N/A
+Graph,500,TypeScript,6,0.30,N/A
+Graph,500,WebAssembly,6,1.10,N/A
+Graph,500,TypeScript,7,0.30,N/A
+Graph,500,WebAssembly,7,0.40,N/A
+Graph,500,TypeScript,8,0.40,N/A
+Graph,500,WebAssembly,8,0.50,N/A
+Graph,500,TypeScript,9,0.40,N/A
+Graph,500,WebAssembly,9,0.40,N/A
+Graph,500,TypeScript,10,0.20,N/A
+Graph,500,WebAssembly,10,0.50,N/A
+Graph,500,TypeScript,11,0.20,N/A
+Graph,500,WebAssembly,11,0.40,N/A
+Graph,500,TypeScript,12,0.20,N/A
+Graph,500,WebAssembly,12,0.30,12.13
+Graph,500,TypeScript,13,0.30,N/A
+Graph,500,WebAssembly,13,0.40,N/A
+Graph,500,TypeScript,14,0.20,N/A
+Graph,500,WebAssembly,14,0.40,N/A
+Graph,500,TypeScript,15,0.30,N/A
+Graph,500,WebAssembly,15,0.40,N/A
+Graph,500,TypeScript,16,0.20,N/A
+Graph,500,WebAssembly,16,0.30,N/A
+Graph,500,TypeScript,17,0.30,N/A
+Graph,500,WebAssembly,17,0.40,N/A
+Graph,500,TypeScript,18,0.30,N/A
+Graph,500,WebAssembly,18,0.60,N/A
+Graph,500,TypeScript,19,0.20,N/A
+Graph,500,WebAssembly,19,0.40,N/A
+Graph,500,TypeScript,20,0.50,N/A
+Graph,500,WebAssembly,20,0.40,N/A
+Graph,500,TypeScript,21,0.20,N/A
+Graph,500,WebAssembly,21,0.40,N/A
+Graph,500,TypeScript,22,0.40,N/A
+Graph,500,WebAssembly,22,0.40,N/A
+Graph,500,TypeScript,23,0.10,N/A
+Graph,500,WebAssembly,23,0.40,N/A
+Graph,500,TypeScript,24,0.20,N/A
+Graph,500,WebAssembly,24,0.30,N/A
+Graph,500,TypeScript,25,0.30,N/A
+Graph,500,WebAssembly,25,0.40,N/A
+Graph,500,TypeScript,26,0.20,N/A
+Graph,500,WebAssembly,26,0.50,N/A
+Graph,500,TypeScript,27,0.20,N/A
+Graph,500,WebAssembly,27,0.30,N/A
+Graph,500,TypeScript,28,0.20,N/A
+Graph,500,WebAssembly,28,0.50,N/A
+Graph,500,TypeScript,29,0.20,N/A
+Graph,500,WebAssembly,29,0.40,N/A
+Graph,500,TypeScript,30,0.20,N/A
+Graph,500,WebAssembly,30,0.40,N/A
+Graph,1000,TypeScript,1,0.50,N/A
+Graph,1000,WebAssembly,1,0.70,N/A
+Graph,1000,TypeScript,2,0.60,N/A
+Graph,1000,WebAssembly,2,49.90,N/A
+Graph,1000,TypeScript,3,0.80,N/A
+Graph,1000,WebAssembly,3,1.00,N/A
+Graph,1000,TypeScript,4,0.50,N/A
+Graph,1000,WebAssembly,4,0.60,N/A
+Graph,1000,TypeScript,5,0.40,N/A
+Graph,1000,WebAssembly,5,0.60,N/A
+Graph,1000,TypeScript,6,0.50,N/A
+Graph,1000,WebAssembly,6,0.70,N/A
+Graph,1000,TypeScript,7,0.50,N/A
+Graph,1000,WebAssembly,7,0.70,N/A
+Graph,1000,TypeScript,8,0.50,N/A
+Graph,1000,WebAssembly,8,0.60,N/A
+Graph,1000,TypeScript,9,0.50,N/A
+Graph,1000,WebAssembly,9,0.70,N/A
+Graph,1000,TypeScript,10,0.50,N/A
+Graph,1000,WebAssembly,10,0.70,N/A
+Graph,1000,TypeScript,11,0.40,N/A
+Graph,1000,WebAssembly,11,0.70,N/A
+Graph,1000,TypeScript,12,0.50,N/A
+Graph,1000,WebAssembly,12,0.60,N/A
+Graph,1000,TypeScript,13,0.40,N/A
+Graph,1000,WebAssembly,13,0.70,N/A
+Graph,1000,TypeScript,14,0.50,N/A
+Graph,1000,WebAssembly,14,0.80,N/A
+Graph,1000,TypeScript,15,0.40,N/A
+Graph,1000,WebAssembly,15,0.70,N/A
+Graph,1000,TypeScript,16,0.60,N/A
+Graph,1000,WebAssembly,16,0.60,N/A
+Graph,1000,TypeScript,17,0.50,N/A
+Graph,1000,WebAssembly,17,0.70,N/A
+Graph,1000,TypeScript,18,2.80,N/A
+Graph,1000,WebAssembly,18,1.20,N/A
+Graph,1000,TypeScript,19,0.50,N/A
+Graph,1000,WebAssembly,19,0.60,N/A
+Graph,1000,TypeScript,20,0.50,N/A
+Graph,1000,WebAssembly,20,0.70,N/A
+Graph,1000,TypeScript,21,0.40,N/A
+Graph,1000,WebAssembly,21,0.70,N/A
+Graph,1000,TypeScript,22,0.40,N/A
+Graph,1000,WebAssembly,22,0.70,N/A
+Graph,1000,TypeScript,23,0.50,N/A
+Graph,1000,WebAssembly,23,0.70,N/A
+Graph,1000,TypeScript,24,0.50,N/A
+Graph,1000,WebAssembly,24,0.70,N/A
+Graph,1000,TypeScript,25,0.60,N/A
+Graph,1000,WebAssembly,25,0.60,N/A
+Graph,1000,TypeScript,26,0.60,N/A
+Graph,1000,WebAssembly,26,0.60,N/A
+Graph,1000,TypeScript,27,0.50,N/A
+Graph,1000,WebAssembly,27,0.70,N/A
+Graph,1000,TypeScript,28,0.40,N/A
+Graph,1000,WebAssembly,28,0.70,N/A
+Graph,1000,TypeScript,29,0.50,N/A
+Graph,1000,WebAssembly,29,0.60,N/A
+Graph,1000,TypeScript,30,0.50,N/A
+Graph,1000,WebAssembly,30,0.70,N/A
+Graph,2500,TypeScript,1,1.40,N/A
+Graph,2500,WebAssembly,1,1.90,N/A
+Graph,2500,TypeScript,2,1.40,N/A
+Graph,2500,WebAssembly,2,1.60,N/A
+Graph,2500,TypeScript,3,1.50,N/A
+Graph,2500,WebAssembly,3,1.80,N/A
+Graph,2500,TypeScript,4,1.40,N/A
+Graph,2500,WebAssembly,4,1.60,N/A
+Graph,2500,TypeScript,5,1.20,N/A
+Graph,2500,WebAssembly,5,1.60,N/A
+Graph,2500,TypeScript,6,1.20,N/A
+Graph,2500,WebAssembly,6,1.60,N/A
+Graph,2500,TypeScript,7,1.50,N/A
+Graph,2500,WebAssembly,7,1.40,N/A
+Graph,2500,TypeScript,8,1.40,N/A
+Graph,2500,WebAssembly,8,1.60,N/A
+Graph,2500,TypeScript,9,1.40,N/A
+Graph,2500,WebAssembly,9,1.50,N/A
+Graph,2500,TypeScript,10,1.30,N/A
+Graph,2500,WebAssembly,10,1.60,N/A
+Graph,2500,TypeScript,11,1.40,N/A
+Graph,2500,WebAssembly,11,1.60,N/A
+Graph,2500,TypeScript,12,1.30,N/A
+Graph,2500,WebAssembly,12,1.50,N/A
+Graph,2500,TypeScript,13,1.30,N/A
+Graph,2500,WebAssembly,13,1.50,N/A
+Graph,2500,TypeScript,14,1.40,N/A
+Graph,2500,WebAssembly,14,1.50,N/A
+Graph,2500,TypeScript,15,1.50,N/A
+Graph,2500,WebAssembly,15,1.60,N/A
+Graph,2500,TypeScript,16,1.40,N/A
+Graph,2500,WebAssembly,16,1.50,N/A
+Graph,2500,TypeScript,17,1.60,N/A
+Graph,2500,WebAssembly,17,1.50,N/A
+Graph,2500,TypeScript,18,1.30,N/A
+Graph,2500,WebAssembly,18,1.40,N/A
+Graph,2500,TypeScript,19,1.50,N/A
+Graph,2500,WebAssembly,19,1.60,N/A
+Graph,2500,TypeScript,20,1.20,N/A
+Graph,2500,WebAssembly,20,1.50,N/A
+Graph,2500,TypeScript,21,1.30,N/A
+Graph,2500,WebAssembly,21,1.40,N/A
+Graph,2500,TypeScript,22,1.30,N/A
+Graph,2500,WebAssembly,22,1.40,N/A
+Graph,2500,TypeScript,23,1.40,N/A
+Graph,2500,WebAssembly,23,1.40,N/A
+Graph,2500,TypeScript,24,1.20,N/A
+Graph,2500,WebAssembly,24,1.40,N/A
+Graph,2500,TypeScript,25,1.30,N/A
+Graph,2500,WebAssembly,25,2.20,N/A
+Graph,2500,TypeScript,26,1.60,N/A
+Graph,2500,WebAssembly,26,2.20,N/A
+Graph,2500,TypeScript,27,1.20,N/A
+Graph,2500,WebAssembly,27,1.60,N/A
+Graph,2500,TypeScript,28,1.40,N/A
+Graph,2500,WebAssembly,28,1.50,N/A
+Graph,2500,TypeScript,29,1.40,N/A
+Graph,2500,WebAssembly,29,1.50,N/A
+Graph,2500,TypeScript,30,1.20,N/A
+Graph,2500,WebAssembly,30,1.60,N/A

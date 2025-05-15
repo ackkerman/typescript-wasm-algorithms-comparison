@@ -30,17 +30,17 @@ export async function runGraphBenchmark(nodeCount: number): Promise<BenchmarkRes
   }
 
   // TypeScript 実装の測定
-  const tsMemBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const tsMemBefore = (performance as any).memory?.usedJSHeapSize || 0;
   const tsStart = performance.now();
   graphTS.dijkstra(0);
   const tsEnd = performance.now();
-  const tsMemAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const tsMemAfter = (performance as any).memory?.usedJSHeapSize || 0;
 
   const tsTime = tsEnd - tsStart;
   const tsMemory = (tsMemAfter - tsMemBefore) / (1024 * 1024); // MB
 
   // Wasm 実装の測定
-  const wasmMemBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const wasmMemBefore = (performance as any).memory?.usedJSHeapSize || 0;
   const wasmStart = performance.now();
 
   const wasmGraph = await WasmGraph.create(nodeCount);
@@ -48,7 +48,7 @@ export async function runGraphBenchmark(nodeCount: number): Promise<BenchmarkRes
   wasmGraph.dijkstra(0);
 
   const wasmEnd = performance.now();
-  const wasmMemAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const wasmMemAfter = (performance as any).memory?.usedJSHeapSize || 0;
 
   const wasmTime = wasmEnd - wasmStart;
   const wasmMemory = (wasmMemAfter - wasmMemBefore) / (1024 * 1024); // MB

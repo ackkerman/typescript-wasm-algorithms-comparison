@@ -26,28 +26,28 @@ export async function runTreeBenchmark(size: number): Promise<BenchmarkResult> {
 
   // --- TypeScript ベンチマーク ---
   const tsBefore = performance.now();
-  const tsMemoryBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const tsMemoryBefore = (performance as any).memory?.usedJSHeapSize || 0;
 
   const tsTree = new AVLTree();
   numbers.forEach(n => tsTree.insert(n));
   searchNumbers.forEach(n => tsTree.search(n));
 
   const tsAfter = performance.now();
-  const tsMemoryAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const tsMemoryAfter = (performance as any).memory?.usedJSHeapSize || 0;
 
   const tsTime = tsAfter - tsBefore;
   const tsMemory = (tsMemoryAfter - tsMemoryBefore) / (1024 * 1024); // MB
 
   // --- Wasm ベンチマーク ---
   const wasmBefore = performance.now();
-  const wasmMemoryBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const wasmMemoryBefore = (performance as any).memory?.usedJSHeapSize || 0;
 
   const wasmTree = await WasmAVLTree.create();
   wasmTree.insertMany(numbers);
   wasmTree.searchMany(searchNumbers);
 
   const wasmAfter = performance.now();
-  const wasmMemoryAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const wasmMemoryAfter = (performance as any).memory?.usedJSHeapSize || 0;
 
   const wasmTime = wasmAfter - wasmBefore;
   const wasmMemory = (wasmMemoryAfter - wasmMemoryBefore) / (1024 * 1024); // MB

@@ -32,20 +32,22 @@ module.exports = {
   devServer: {
     static: './dist',
     hot: true,
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       filename: 'index.html',
       chunks: ['index'],
-      // inject: 'body'
       inject: false,
     }),
     new HtmlWebpackPlugin({
       template: 'public/benchmark.html',
       filename: 'benchmark.html',
       chunks: ['benchmark'],
-      inject: 'body',
       inject: false,
     }),
     new CopyWebpackPlugin({

@@ -25,12 +25,12 @@ export async function runSortingBenchmark(size: number): Promise<BenchmarkResult
   // TypeScript実装のベンチマーク
   const tsArray = generateRandomArray(size);
   const tsBefore = performance.now();
-  const tsMemoryBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const tsMemoryBefore = (performance as any).memory?.usedJSHeapSize || 0;
   
   quickSort([...tsArray]);
   
   const tsAfter = performance.now();
-  const tsMemoryAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const tsMemoryAfter = (performance as any).memory?.usedJSHeapSize || 0;
   
   const tsTime = tsAfter - tsBefore;
   const tsMemory = (tsMemoryAfter - tsMemoryBefore) / (1024 * 1024); // MB単位
@@ -38,12 +38,12 @@ export async function runSortingBenchmark(size: number): Promise<BenchmarkResult
   // Wasm実装のベンチマーク
   const wasmArray = generateRandomArray(size);
   const wasmBefore = performance.now();
-  const wasmMemoryBefore = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const wasmMemoryBefore = (performance as any).memory?.usedJSHeapSize || 0;
   
   await wasmQuickSort([...wasmArray]);
   
   const wasmAfter = performance.now();
-  const wasmMemoryAfter = (window.performance as any).memory?.usedJSHeapSize || 0;
+  const wasmMemoryAfter = (performance as any).memory?.usedJSHeapSize || 0;
   
   const wasmTime = wasmAfter - wasmBefore;
   const wasmMemory = (wasmMemoryAfter - wasmMemoryBefore) / (1024 * 1024); // MB単位
