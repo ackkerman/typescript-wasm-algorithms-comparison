@@ -2,3 +2,7 @@ node_modules/
 pkg
 target
 .venv
+public/*.wasm
+public/*.js
+public/*.js.map
+public/*.wasm.map
